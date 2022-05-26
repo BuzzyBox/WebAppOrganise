@@ -1,0 +1,23 @@
+body {
+    background: rgba(60, 57, 57, 1);
+    color: #c4c4c4;
+    text-align: center;
+}
+.month{
+
+    webkit-transform: transform3d(0, 0, 0);
+    moz-transform: transform3d(0, 0, 0);
+    transform: transform3d(0, 0, 0);
+    padding: 70px 10px;
+    width:420px
+    margin: 0 auto;
+    height: 570px
+    overflow: hidden;
+    background: lightgray;
+/*
+
+    width: 100%;
+    background: lightgray; */
+   /* text-align: center */
+}
+
