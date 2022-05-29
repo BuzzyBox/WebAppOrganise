@@ -1,7 +1,9 @@
+
 body {
     background: rgba(60, 57, 57, 1);
     color: #c4c4c4;
-    text-align: center;
+    /*text-align: center;*/
+    font-family: 'Inter', sans-serif;
 }
 .month{
 
@@ -21,3 +23,8 @@ body {
    /* text-align: center */
 }
 
+#calendar
+{
+     color: black;
+    background: #FAF9F6;
+}
