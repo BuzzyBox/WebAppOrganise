@@ -33,3 +33,22 @@
 
   calendar.render();
 });*/
+/*
+document.addEventListener('DOMContentLoaded', function())
+{
+    var Calendar = FullCalendar.Calendar;
+    var Draggable = FullCalendar.Draggable;
+
+    var containerE1 = document.getElementById("div1");
+    var calendarE1 = document.getElementById("calendar");
+
+    new Draggable(containerE1,
+    {
+        itemSelector: 'event_main2',
+        eventData: function(eventE1)
+        {
+            return {title: eventE1.innerText};
+        }
+    });
+
+}*/

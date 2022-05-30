@@ -9,19 +9,75 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel = "stylesheet">
     <link href='fullcalendar/main.css' rel='stylesheet' />
     <script src='fullcalendar/main.js'></script>
+
 </head>
 <body>
 <h1>Hello World</h1>
-<div id = 'calendar'></div>
+<div id = 'calendar' ondrop='drop(event)' ondragover='allowDrop(event)'></div>
 <script>
     let calendarE1 = document.getElementById('calendar');
+    let containerE1 = document.getElementById('div1');
 
     let calendar = new FullCalendar.Calendar(calendarE1, {
         initialView: 'timeGridWeek',
-        selectable: true
+        selectable: true,
+        editable: true,
+        droppable: true
     });
+/*
+    let draggable = new Draggable(containerE1, {
+      itemSelector: '.fc-event',
+        eventData: function(eventE1) {
+            return { title: eventE1.innerText };
+            }
+    });
+*/
+    function allowDrop(ev)
+    {
+        ev.preventDefault();
+    }
+
+    function drag(ev)
+    {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev)
+    {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
     calendar.render();
+
 </script>
+<script>
+
+</script>
+
+
+
+<div id="div1">
+    <p>
+        <strong>Draggable Events</strong>
+    </p>
+    <div class = 'fc-event fc-h-event fc-daygrid-block-event'><div class='fc-event-main'>MyEvent1</div></div>
+    <div id= 'event_main' draggable="true" ondragstart="drag(event)" id="drag1">Event 1</div>
+    <div id= 'event_main2' draggable="true" ondragstart="drag(event)" id="drag2">Event 2</div>
+
+</div>
+
+
+<!--
+<div id = 'ex-events'>
+    <p>
+        <strong>Draggable Events</strong>
+    </p>
+</div>
+-->
+
+
+
 <!--
 <div id='external-events'>
   <p>
