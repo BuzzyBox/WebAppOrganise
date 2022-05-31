@@ -27,16 +27,11 @@ body {
 
 }
 
-#event_main
+.fc-event-main
 {
-    box-sizing: border-box;
-    width: 198px;
-    height: 23px;
-    left: 691px;
-    top: 190px;
+
     background: #CF8EB5;
-    border: 1px solid #BD739F;
-    border-radius: 20px;
+    border-color: coral;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -48,6 +43,6 @@ body {
 
 #calendar
 {
-     color: black;
+    color: black;
     background: #FAF9F6;
 }

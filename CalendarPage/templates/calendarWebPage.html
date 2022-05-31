@@ -4,33 +4,66 @@
     <link rel = "stylesheet" href="/static/calendarWebPageStylesheet.css" />
     <meta charset="UTF-8">
     <title>calendar</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+
     <script src = "https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel = "stylesheet">
-  <!--  <link href='fullcalendar/main.css' rel='stylesheet' />
+
+    <!--  <link href='fullcalendar/main.css' rel='stylesheet' />
     <script src='fullcalendar/main.js'></script> -->
 
 </head>
 <body>
 <h1>Hello World</h1>
 <div id = 'calendar'></div>
+<div id="div1">
+    <p>
+        <strong>Draggable Events</strong>
+    </p>
+
+    <div class = 'fc-events fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+        <div class ='fc-event-main'></div>
+    </div>
+
+
+  <!--  <div class = 'fc-event fc-h-event fc-daygrid-block-event'><div class='fc-event-main'>MyEvent1</div></div>
+    <div class= 'event_main' draggable="true" ondragstart="drag(event)" id="drag1">Event 1</div>
+    <div class= 'event_main2' draggable="true" ondragstart="drag(event)" id="drag2">Event 2</div>
+-->
+</div>
 <script>
 
       let calendarE1 = document.getElementById('calendar');
-
-      let calendar = new FullCalendar.Calendar(calendarE1, {events : [
+      let containerE1 = document.getElementById('div1');
+      let calendar = new FullCalendar.Calendar(calendarE1, { initialView: 'timeGridWeek',
+      selectable: true,
+      editable: true,
+      droppable: true,
+      events : [
         {% for event in events %}
 
             { title : '{{event.todo}}',
-              start : '{{event.date}}', },
+              start : '{{event.date}}',},
 
         {% endfor %}
         ]}
         );
 
       calendar.render();
-</script>
+     new Draggable(containerEl, {
+     itemSelector: '.item-class'
+    });
 
+
+</script>
+<!--
+<div id="events1">
+    <p>
+        <strong>Draggable Events</strong>
+    </p>
+</div>
+-->
 <!--
 <div id="div1">
     <p>
