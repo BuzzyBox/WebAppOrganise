@@ -2,6 +2,7 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
+"""
 events = [
     {
         'todo': 'EventTest',
@@ -11,7 +12,7 @@ events = [
         'todo': 'EventTest2',
         'date': '2022-06-02',
     }
-]
+]"""
 
 @app.route('/')
 def introduction():
@@ -20,7 +21,7 @@ def introduction():
 
 @app.route('/mycalendar')
 def index():
-    return render_template('calendarWebPage.html', events = events)
+    return render_template('calendarWebPage.html')  #, events = events
 
 
 if __name__ == '__main__':
