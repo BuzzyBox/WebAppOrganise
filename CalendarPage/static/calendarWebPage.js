@@ -1,3 +1,19 @@
+/*function events()
+{
+var Draggable = FullCalendar.Draggable;
+
+var containerEl = document.getElementById('div1');
+
+ new Draggable(containerEl, {
+    itemSelector: '.fc-event',
+    eventData: function(eventEl) {
+      return {
+        title: eventEl.innerText
+      };
+    }
+  });
+}
+*/
 /*document.addEventListener('DOMContentLoaded', function())
 {
     var Calendar = FullCalendar.Calendar;
