@@ -14,6 +14,11 @@
    <!--   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     -->
 
+
+  </head>
+
+  <body>
+
     <script>
 
         function addListeners()
@@ -29,7 +34,13 @@
         let calendarEl = document.getElementById('calendar');
 
         let calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'timeGridWeek',
+         headerToolbar:{
+        right: 'today,prev,next',
+        center: 'title',
+        left: 'dayGridMonth,timeGridWeek'
+         },
+
+         // initialView: 'timeGridWeek',
           droppable : true,
           editable  : true,
           selectable: true,
@@ -46,14 +57,18 @@
 
           eventClick: function(info) {
 
+            alert('Event: ' + info.event.title);
+            alert('Date: ' + info.event.start);
+            alert('Date: ' + info.event.end);
+           //alert('View: ' + info.view.type);
             alert("CLICKED!");
-            //toEditItem(info.event);
+           // toEditItem(info.event);
 
              //document.getElementById('start').value = info.dateStr;
             // document.getElementById('title').textContent =  "Register the Event";
             //  myForm.show();
 
-             // alert('Event: ' + info.event.title);
+
 
             /* need to figure out where info.el.style is within css because the blue border on the events looks bad */
             info.el.style.borderColor = 'pink';
@@ -70,12 +85,8 @@
             title: eventEl.innerText
                 };
         }
-
-
-
-
     });
-/*
+
     function toEditItem(event)
     {   showEditModelBox();
         let id;
@@ -88,7 +99,7 @@
 
         preFillEditForm(id);
     }
-function preFillEditForm(id)
+/*function preFillEditForm(id)
     {
         let result = todoList.find(todoObj => todoObj.id == id);
                 let {title, start, end} = results;
@@ -98,25 +109,35 @@ function preFillEditForm(id)
                 document.getElementById("end").value = end;
 
                 changeBtn.dataset.id = id;
-    }
-   function showEditModalBox(event)
+    }*/
+
+    function buttonTest()
     {
-       document.getElementById("edit-eventsID").classList.add("slideIntoView");
+        //var element = document.getElementById("edit-events");
+        //element.classList.toggle("slideIntoView");
     }
+
     function closeEditModalBox(event)
     {
-        document.getElementById("edit-eventsID").classList.remove("slideIntoView");
+       // document.getElementById("edit-events").classList.remove("slideIntoView");
     }
-*/
+
+
    });
+   function buttonTest()
+    {
+     /*the problem was that the script was not located within the body area of the work and-or the function was
+      inside the function for the calendar that could be it as well! */
 
+       var open = document.getElementById("edit-events");
+       open.classList.toggle("slideIntoView");
+    }
+function myButton()
+    {
+     var element = document.getElementById("myDIV");
+     element.classList.toggle("style-test");
+    }
   </script>
-  </head>
-
-  <body>
-
-
-
 <!--Draggable Events-->
 
   <div id='external-event'>
@@ -140,12 +161,13 @@ function preFillEditForm(id)
 
   <!-- It is important that calendar is the group container as it will help drag events into it-->
 
-<!--
+
 <div id = 'container'>
     <div id='calendar'></div>
 </div>
--->
-<div class = "edit-events slideIntoView" id = "edit-eventsID">
+<button onclick="buttonTest()">Open Modal</button>
+<div id = "modalEvents">
+<div class = "edit-events" id = "edit-events">
     <div class = "edit-modal" id = "edit-modal">
 	<div class="event-Input event-block">
 		<span>Title: </span>
@@ -164,6 +186,7 @@ function preFillEditForm(id)
 		<button type="submit" id="changeBtn" class="changeBtn btn btn-primary" >Save</button>
     </div>
     <button type="submit" class="event-modal-close-btn" id="event-modal-close-btn">X</button>
+
 <!--<form class="row g-3">
     <div class="col-12">
     <button class="event-modal-close-btn" id="event-modal-close-btn">X</button>
@@ -188,7 +211,12 @@ function preFillEditForm(id)
 
     </div>
 </div>
+</div>
+  <button onclick="myButton()">Try it</button>
 
+<div id="myDIV">
+This is a DIV element.
+</div>
 
   </body>
 </html>

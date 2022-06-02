@@ -26,8 +26,8 @@ html, body {
     align-items: center;
     font-weight: bold;
     color: #FAF9F6;
-    transform : translateY(-100vw);
-    translation : all 1s;
+    transform : translateY(-300vw);
+    transition : transform 250ms;
 
 
 }
@@ -36,7 +36,7 @@ html, body {
     width: 50vw;
     height: 50vh;
     border: 1px solid green;
-    padding: 10px;
+    /*padding: 10px; */
 
 }
 
@@ -65,7 +65,7 @@ html, body {
 .slideIntoView
 {
     transform : translateY(0vw);
-    translation : all 1s;
+    transition : transform 250ms;
 }
 .month{
     /*webkit-transform: transform3d(0, 0, 0);
@@ -125,7 +125,7 @@ html, body {
 }
 #calendar-container, #container
 {
-    position: relative;
+    /*position: relative;*/
     z-index: 1;
     margin-left: 200px
 
@@ -139,10 +139,18 @@ html, body {
 #calendar
 {
     color: black;
-
-  /*  background: #FAF9F6; */
-
+    position: sticky;
+    top: 0;
+    background: #FAF9F6;
     max-width: 1100px;
     margin: 20px auto;
 }
 
+.style-test {
+  width: 100%;
+  padding: 25px;
+  background-color: coral;
+  color: white;
+  font-size: 25px;
+  box-sizing: border-box;
+}
