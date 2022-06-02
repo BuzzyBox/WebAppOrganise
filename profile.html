@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <title>Organize - Smarter, Faster, Better</title>
+    <link rel="icon" type="image/x-icon" href="/static/tabICN.ico">
+
+ <link rel="stylesheet" href="{{ url_for('static', filename='Home.css') }}">
+</head>
+<body>
+    
+     <nav>    
+          <ul>
+             <li><div class="title"><h1>Organize</h1></div></li>
+             <li><a href="#">Folders</a></li>
+             <li><a href="#">Timeline</a></li>
+             <li><a href="pages.html">Pages</a></li>
+             <li><a href="home.html">Meetings</a></li>
+             <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a></li >
+             <li><a href="{{ url_for('profile') }}"><i class=""></i>Profile</a></li >
+            
+             <li><div class="title1"><h3>documents</h3></div></li>
+          
+              <li></li>
+           </ul>
+       </nav>
+
+        </div>
+        <div class="Userprofile">
+            <img src ="{{url_for('static', filename='blue.png')}}" alt="avatar">
+            <div class="Userdetails">
+                <ul>
+                    <p>Your account details are below:</p>
+                    <table>
+                        <tr>
+                            <td>Username:</td>
+                            <td>{{ account['username'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td>{{ account['password'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>{{ account['email'] }}</td>
+                        </tr>
+                    </table>
+                </ul>
+            </div>
+    </div>
+ <!-- TABSEND -->
+
+  
+
+
+</body>
+</html>

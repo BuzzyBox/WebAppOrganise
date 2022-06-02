@@ -36,3 +36,6 @@ h1 {
   
 }
 
+.item img {
+    position:relative;
+}
