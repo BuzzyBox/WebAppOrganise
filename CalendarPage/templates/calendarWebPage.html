@@ -5,6 +5,7 @@
       <link rel = "stylesheet" href="/static/calendarWebPageStylesheet.css" />
       <meta charset="UTF-8">
         <!--fonts-->
+      <title>Calendar</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
 
       <!--fullCalendarScript-->
@@ -25,6 +26,30 @@
           droppable : true,
           editable  : true,
           selectable: true,
+
+          events:
+          [ { title : "title1"} ],
+
+          /*event click is going to work well here now I need to try and figure out if it's going to work with user
+          input and flask */
+
+          /* okay so I will need to edited eventClick so it can work to change the title and uploading files rather
+          than alerts if I can */
+
+          /* I might even look at wtfroms and or wtf flask for this area */
+
+
+          eventClick: function(info) {
+
+              alert("CLICKED!");
+              alert('Event : ' + info.event.title);
+
+
+            /* need to figure out where info.el.style is within css because the blue border on the events looks bad */
+            info.el.style.borderColor = 'pink';
+          }
+
+
         });
 
         calendar.render();
