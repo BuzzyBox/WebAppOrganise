@@ -11,12 +11,19 @@
       <!--fullCalendarScript-->
       <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel = "stylesheet">
+   <!--   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    -->
+
     <script>
+
+        function addListeners()
+        {
+            document.getElementById("event-modal-close-btn").addEventListener("click", closeEditModalBox, false);
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
          var Calendar = FullCalendar.Calendar;
          var Draggable = FullCalendar.Draggable;
-
 
         let containerEl = document.getElementById('external-event');
         let calendarEl = document.getElementById('calendar');
@@ -27,8 +34,7 @@
           editable  : true,
           selectable: true,
 
-          events:
-          [ { title : "title1"} ],
+          events: [],
 
           /*event click is going to work well here now I need to try and figure out if it's going to work with user
           input and flask */
@@ -38,21 +44,24 @@
 
           /* I might even look at wtfroms and or wtf flask for this area */
 
-
           eventClick: function(info) {
 
-              alert("CLICKED!");
-              alert('Event : ' + info.event.title);
+            alert("CLICKED!");
+            //toEditItem(info.event);
 
+             //document.getElementById('start').value = info.dateStr;
+            // document.getElementById('title').textContent =  "Register the Event";
+            //  myForm.show();
+
+             // alert('Event: ' + info.event.title);
 
             /* need to figure out where info.el.style is within css because the blue border on the events looks bad */
             info.el.style.borderColor = 'pink';
+            //  event.backgroundColor = 'red';
           }
-
-
         });
-
         calendar.render();
+
 
     new Draggable(containerEl, {
         itemSelector: '.fc-event',
@@ -61,14 +70,55 @@
             title: eventEl.innerText
                 };
         }
+
+
+
+
     });
+/*
+    function toEditItem(event)
+    {   showEditModelBox();
+        let id;
 
+        if(event.target.dataset)
+        id = event.target.dataset.id;
+        else
+        id = event.id;
+        console.log(id);
 
+        preFillEditForm(id);
+    }
+function preFillEditForm(id)
+    {
+        let result = todoList.find(todoObj => todoObj.id == id);
+                let {title, start, end} = results;
+
+                document.getElementById("title").value = title;
+                document.getElementById("start").value = start;
+                document.getElementById("end").value = end;
+
+                changeBtn.dataset.id = id;
+    }
+   function showEditModalBox(event)
+    {
+       document.getElementById("edit-eventsID").classList.add("slideIntoView");
+    }
+    function closeEditModalBox(event)
+    {
+        document.getElementById("edit-eventsID").classList.remove("slideIntoView");
+    }
+*/
    });
+
   </script>
   </head>
 
   <body>
+
+
+
+<!--Draggable Events-->
+
   <div id='external-event'>
       <!--Event Header-->
       <p class = "event-heading">
@@ -87,9 +137,58 @@
 
   </div>
 
+
   <!-- It is important that calendar is the group container as it will help drag events into it-->
-  <div id = 'container'>
+
+<!--
+<div id = 'container'>
     <div id='calendar'></div>
+</div>
+-->
+<div class = "edit-events slideIntoView" id = "edit-eventsID">
+    <div class = "edit-modal" id = "edit-modal">
+	<div class="event-Input event-block">
+		<span>Title: </span>
+		<input type="text" placeholder ="Enter Title">
+		<span>Category:</span>
+		<input type="text" placeholder ="Enter Category" list="categoryList">
+		<datalist id = "categoryList">
+			<option value = "Personal"></option>
+			<option value = "Work"></option>
+		</datalist>
+		<span>Date:</span>
+		<input type="date" id="dateInput">
+		<span>Time:</span>
+		<input type="time" id="timeInput">
+		<span></span>
+		<button type="submit" id="changeBtn" class="changeBtn btn btn-primary" >Save</button>
+    </div>
+    <button type="submit" class="event-modal-close-btn" id="event-modal-close-btn">X</button>
+<!--<form class="row g-3">
+    <div class="col-12">
+    <button class="event-modal-close-btn" id="event-modal-close-btn">X</button>
   </div>
-   </body>
+  <div class="col-md-12">
+    <label for="title" class="form-label">Event Title</label>
+    <input type="text" class="form-control" name="title" id="title">
+  </div>
+
+  <div class="col-md-12">
+    <label for="start" class="form-label">Starting Date</label>
+    <input type="date" class="form-control" name="start" id="start">
+  </div>
+
+    <div class="col-md-12">
+    <label for="end" class="form-label">Ending Date</label>
+    <input type="date" class="form-control" name="end" id="end">
+    </div>
+    <button type="submit" id="changeBtn" class="changeBtn btn btn-primary" >Save</button>
+
+    </form>-->
+
+    </div>
+</div>
+
+
+  </body>
 </html>
