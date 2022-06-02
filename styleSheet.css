@@ -1,15 +1,10 @@
 body {
-    background: rgba(60, 57, 57, 1);
+    background: rgba(60, 57, 57, 1) !important;
     color: #c4c4c4;
-    text-align: center;
+    text-align: center !important;
 
 }
-img {
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25%;
-}
+
 input
 {
     width: 25%;
@@ -22,14 +17,14 @@ input
     
 }
 label{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 19px;
-   color: #FFFFFF;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 19px;
+ color: #FFFFFF;
 }
-  
+
 h1 {
     font-family: 'Inter';
  font-style: normal;
@@ -40,3 +35,4 @@ h1 {
   color: #FFFFFF;
   
 }
+
