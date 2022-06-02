@@ -4,16 +4,17 @@ nav {
     margin: 0;
     padding: 0;
     width: 15%;
-    background-color: #3C3939;
+    background-color: #3a3a3a;
     height: 100%; /*full height */
     position:absolute; /* Make it stick, even on scroll */
     overflow: auto; /* enable scrolling if the sidenav has too much content */
     left: 0;
+     color:white;
 }
   
   li a {
     display: block;     /* links as block elements, whole link area click */
-    color: #000;
+    color:white;
     padding: 8px 1px; /*padding between pages*/
     padding-top:20px;
     text-decoration: none;
@@ -33,13 +34,13 @@ background-color: aqua;
   }
  .title { 
     text-align: center;
-    color:#3C3939;
+    color:white;
     background-color: #3C3939;
 }
 .title1
 {
     text-align: center;
-    color:#572222;
+    color:white;
     background-color: #3C3939;
     padding-top: 20px;
 }
@@ -59,6 +60,7 @@ body
     font-family: sans-serif;
     font-size: 16px;
     line-height:1.6
+
  }
 .container
  {
@@ -93,6 +95,7 @@ text-align: center;
 font-weight: 700;
 text-transform: uppercase;
 border-radius:8px 8px 0 0;
+color:white;
 }
 .tab_trigger ul li:nth-child(1) label
 {
@@ -168,6 +171,10 @@ height: 590px;
     background-color: #555;
     outline: none;
     font-size: 16px;
+    color: white;
+}
+.tab_content_box h2{
+    color:white;
 }
 /* SRCUMS END */
 /* MESSAGES  */
@@ -192,6 +199,11 @@ height: 590px;
     top:-45%;
     left:15%;
 }
+.Messages h4, p, time{
+    color:white;
+}
+.time{color:white}
+
 /* MESSAGES END */
 
 /* Search bar */
@@ -210,6 +222,7 @@ height: 590px;
   background-color: #555;
   border: #3C3939;
   outline: none;
+  color:white;
 }
 
 /* Search bar end */
@@ -219,22 +232,22 @@ height: 590px;
     position: relative;
     top:40%;
     left:10%;
-    background-color: #555;
-    width:80%;
+    background-color: rgba(71, 186, 240, 0.022);
+    width:100%;
 }
 .User2{
     position: relative;
     top:40%;
     left:10%;
-    background-color: #555;
-    width:80%;
+    background-color: rgba(71, 186, 240, 0.022);
+    width:100%;
 }
 .User3{
     position: relative;
     top:40%;
     left:10%;
-    background-color: #555;
-    width:80%;
+    background-color: rgba(71, 186, 240, 0.022);
+    width:100%;
 }
 /* END USERS CHAT */
 .Userprofile{
@@ -251,6 +264,7 @@ text-align: center;
 top:100px;
 
 }
+
 .Userdetails input{
     width:60%;
     height:30px;
@@ -260,6 +274,7 @@ top:100px;
     background-color: #555;
     outline: none;
     font-size: 16px;
+    color:white;
 }
 
 .Userprofile img
