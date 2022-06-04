@@ -60,9 +60,11 @@
             alert('Event: ' + info.event.title);
             alert('Date: ' + info.event.start);
             alert('Date: ' + info.event.end);
-           //alert('View: ' + info.view.type);
+            //alert('View: ' + info.view.type);
             alert("CLICKED!");
            // toEditItem(info.event);
+
+
 
              //document.getElementById('start').value = info.dateStr;
             // document.getElementById('title').textContent =  "Register the Event";
@@ -124,7 +126,7 @@
 
 
    });
-   function buttonTest()
+  function buttonTest()
     {
      /*the problem was that the script was not located within the body area of the work and-or the function was
       inside the function for the calendar that could be it as well! */
@@ -165,6 +167,10 @@ function myButton()
 <div id = 'container'>
     <div id='calendar'></div>
 </div>
+
+
+
+
 <button onclick="buttonTest()">Open Modal</button>
 <div id = "modalEvents">
 <div class = "edit-events" id = "edit-events">

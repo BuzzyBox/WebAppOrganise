@@ -1,0 +1,102 @@
+"function initCalendar()" = document.addEventListener('DOMContentLoadef
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+         var Calendar = FullCalendar.Calendar;
+         var Draggable = FullCalendar.Draggable;
+
+        let containerEl = document.getElementById('external-event');
+        let calendarEl = document.getElementById('calendar');
+
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+         headerToolbar:{
+        right: 'today,prev,next',
+        center: 'title',
+        left: 'dayGridMonth,timeGridWeek'
+         },
+
+         // initialView: 'timeGridWeek',
+          droppable : true,
+          editable  : true,
+          selectable: true,
+
+          events: [],
+
+          eventClick: function(info) {
+		toEditItem(info.event);
+          }
+        });
+        calendar.render();
+
+
+    new Draggable(containerEl, {
+        itemSelector: '.fc-event',
+        eventData: function(eventEl) {
+        return {
+            title: eventEl.innerText
+                };
+        }
+    });
+
+
+
+
+
+function addListeners()
+{
+	addButton.addEventListener("click", addEntry, false);
+	sortButton.addEventListener("click", addEntry, false);
+	selectElem.addEventListener("click", multipleFilter, false);
+	shortlistBtn.addEventListener("click", multipleFilter, false);
+
+	document.getElementById("todoTable").addEventListener("click", onTableClicked, false);
+	
+	document.getElementListener("click", showEditModalBox, false); 
+	
+}
+
+function showEditModalBox(event)
+{
+	document.getElementById("edit-event").classList.add("slideIntoView");
+}
+
+function closeEditModelBox(event)
+{
+	document.getElementById("edit-event").classList.remove("slideIntoView");
+
+}
+/* move out from function group from somewhere */
+function toEditItem(event)
+{
+	showEditModalBox();
+	let id = event.target.dataset.id;
+	console.log(id);
+	preFillEditForm(id);
+}
+function prefilledEditForm(id)
+{
+	let result = todoList.find(todoObj => todoObj.id == id);
+	let {title, category, date, time} = results;
+
+	document.getElementById("todo-edit-title").value = title;
+	document.getElementById("todo-edit-category").value = category;
+	document.getElementById("todo-edit-date").value = date;
+	document.getElementById("todo-edit-time").value = time;
+
+	changeBtn.dataset.id = id;	
+
+}
+
+
+"buttonTest()" = "showEditModalBox
+
+"edit-event" = "todo-overlay"
+
+
+
+let containerEl = document.getElementById('external-event');
+
+functionshowElementById(event)
+{
+	document.getElementById("edit-events").classList.add("slideIntoView");
+}
