@@ -4,6 +4,7 @@
       <!-- stylesheet and designs -->
       <link rel = "stylesheet" href="/static/calendarWebPageStylesheet.css" />
       <meta charset="UTF-8">
+      <link rel="shortcut icon" href="#">
         <!--fonts-->
       <title>Calendar</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
@@ -13,133 +14,14 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel = "stylesheet">
    <!--   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     -->
+      <script type = "text/javascript" src = "{{ url_for ('static', filename = 'calendarWebPage.js')}}" defer></script>
+
 
 
   </head>
 
   <body>
 
-    <script>
-
-        function addListeners()
-        {
-            document.getElementById("event-modal-close-btn").addEventListener("click", closeEditModalBox, false);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-         var Calendar = FullCalendar.Calendar;
-         var Draggable = FullCalendar.Draggable;
-
-        let containerEl = document.getElementById('external-event');
-        let calendarEl = document.getElementById('calendar');
-
-        let calendar = new FullCalendar.Calendar(calendarEl, {
-         headerToolbar:{
-        right: 'today,prev,next',
-        center: 'title',
-        left: 'dayGridMonth,timeGridWeek'
-         },
-
-         // initialView: 'timeGridWeek',
-          droppable : true,
-          editable  : true,
-          selectable: true,
-
-          events: [],
-
-          /*event click is going to work well here now I need to try and figure out if it's going to work with user
-          input and flask */
-
-          /* okay so I will need to edited eventClick so it can work to change the title and uploading files rather
-          than alerts if I can */
-
-          /* I might even look at wtfroms and or wtf flask for this area */
-
-          eventClick: function(info) {
-
-            alert('Event: ' + info.event.title);
-            alert('Date: ' + info.event.start);
-            alert('Date: ' + info.event.end);
-            //alert('View: ' + info.view.type);
-            alert("CLICKED!");
-           // toEditItem(info.event);
-
-
-
-             //document.getElementById('start').value = info.dateStr;
-            // document.getElementById('title').textContent =  "Register the Event";
-            //  myForm.show();
-
-
-
-            /* need to figure out where info.el.style is within css because the blue border on the events looks bad */
-            info.el.style.borderColor = 'pink';
-            //  event.backgroundColor = 'red';
-          }
-        });
-        calendar.render();
-
-
-    new Draggable(containerEl, {
-        itemSelector: '.fc-event',
-        eventData: function(eventEl) {
-        return {
-            title: eventEl.innerText
-                };
-        }
-    });
-
-    function toEditItem(event)
-    {   showEditModelBox();
-        let id;
-
-        if(event.target.dataset)
-        id = event.target.dataset.id;
-        else
-        id = event.id;
-        console.log(id);
-
-        preFillEditForm(id);
-    }
-/*function preFillEditForm(id)
-    {
-        let result = todoList.find(todoObj => todoObj.id == id);
-                let {title, start, end} = results;
-
-                document.getElementById("title").value = title;
-                document.getElementById("start").value = start;
-                document.getElementById("end").value = end;
-
-                changeBtn.dataset.id = id;
-    }*/
-
-    function buttonTest()
-    {
-        //var element = document.getElementById("edit-events");
-        //element.classList.toggle("slideIntoView");
-    }
-
-    function closeEditModalBox(event)
-    {
-       // document.getElementById("edit-events").classList.remove("slideIntoView");
-    }
-
-
-   });
-  function buttonTest()
-    {
-     /*the problem was that the script was not located within the body area of the work and-or the function was
-      inside the function for the calendar that could be it as well! */
-
-       var open = document.getElementById("edit-events");
-       open.classList.toggle("slideIntoView");
-    }
-function myButton()
-    {
-     var element = document.getElementById("myDIV");
-     element.classList.toggle("style-test");
-    }
-  </script>
 <!--Draggable Events-->
 
   <div id='external-event'>
@@ -148,6 +30,7 @@ function myButton()
         <strong>Draggable Events</strong>
       </p>
       <!--Events-->
+      <div id ="categoryFilter">
       <div class='fc-event fc-h-event  fc-daygrid-event fc-daygrid-block-event'>
           <div class='fc-event-main'>My Event 1</div>
       </div>
@@ -156,6 +39,7 @@ function myButton()
       </div>
       <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
           <div class='fc-event-main'>My Event 3</div>
+      </div>
       </div>
 
   </div>
@@ -171,23 +55,26 @@ function myButton()
 
 
 
+
+
+
 <button onclick="buttonTest()">Open Modal</button>
 <div id = "modalEvents">
 <div class = "edit-events" id = "edit-events">
     <div class = "edit-modal" id = "edit-modal">
 	<div class="event-Input event-block">
 		<span>Title: </span>
-		<input type="text" placeholder ="Enter Title">
+		<input type="text" placeholder ="Enter Title" id = "todo-Title">
 		<span>Category:</span>
-		<input type="text" placeholder ="Enter Category" list="categoryList">
+		<input type="text" placeholder ="Enter Category" list="categoryList" id ="todo-Category">
 		<datalist id = "categoryList">
 			<option value = "Personal"></option>
 			<option value = "Work"></option>
 		</datalist>
 		<span>Date:</span>
-		<input type="date" id="dateInput">
+		<input type="date" id="todo-Date">
 		<span>Time:</span>
-		<input type="time" id="timeInput">
+		<input type="time" id="todo-Time">
 		<span></span>
 		<button type="submit" id="changeBtn" class="changeBtn btn btn-primary" >Save</button>
     </div>

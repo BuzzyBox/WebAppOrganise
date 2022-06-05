@@ -109,7 +109,7 @@ html, body {
 {
     color:white;
 }
-.fc-event-main
+.fc-event-main, .fc-event-main-frame
 {
     background: #CF8EB5;
     font-style: normal;

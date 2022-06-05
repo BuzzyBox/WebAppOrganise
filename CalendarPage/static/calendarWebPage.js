@@ -1,10 +1,28 @@
+todoMain();
 
-        function addListeners()
+function todoMain()
+{
+    let addButton;
+    getElements();
+    addListeners();
+ //   bntTest2();
+   // let calendar;
+
+
+       /*  function addListeners()
         {
             document.getElementById("event-modal-close-btn").addEventListener("click", closeEditModalBox, false);
-        }
+        }*/
+function getElements()
+{
+  //  addButton = document.getElementById("submit");
+}
+function addListeners()
+{
+    //addButton.addEventListener("click", addEntry, false);
+}
 
-        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
          var Calendar = FullCalendar.Calendar;
          var Draggable = FullCalendar.Draggable;
 
@@ -12,37 +30,31 @@
         let calendarEl = document.getElementById('calendar');
 
         let calendar = new FullCalendar.Calendar(calendarEl, {
-         headerToolbar:{
-        right: 'today,prev,next',
-        center: 'title',
-        left: 'dayGridMonth,timeGridWeek'
+        headerToolbar:{
+         right: 'today,prev,next',
+         center: 'title',
+         left: 'dayGridMonth,timeGridWeek'
          },
 
          // initialView: 'timeGridWeek',
           droppable : true,
           editable  : true,
           selectable: true,
-
           events: [],
-
-          /*event click is going to work well here now I need to try and figure out if it's going to work with user
-          input and flask */
-
-          /* okay so I will need to edited eventClick so it can work to change the title and uploading files rather
-          than alerts if I can */
-
-          /* I might even look at wtfroms and or wtf flask for this area */
-
           eventClick: function(info) {
+          /*
+          eventClick: function(info) {
+          toEditItem(info.event);
+          },*/ // <==Goal
 
-            alert('Event: ' + info.event.title);
-            alert('Date: ' + info.event.start);
-            alert('Date: ' + info.event.end);
+
+            //alert('Event: ' + info.event.title);
+            //alert('Date: ' + info.event.start);
+            //alert('Date: ' + info.event.end);
             //alert('View: ' + info.view.type);
-            alert("CLICKED!");
-           // toEditItem(info.event);
-
-
+            buttonTest();
+           // alert("CLICKED!");
+            toEditItem(info.event);
 
              //document.getElementById('start').value = info.dateStr;
             // document.getElementById('title').textContent =  "Register the Event";
@@ -67,7 +79,7 @@
         }
     });
 
-    function toEditItem(event)
+   /* function toEditItem(event)
     {   showEditModelBox();
         let id;
 
@@ -78,7 +90,7 @@
         console.log(id);
 
         preFillEditForm(id);
-    }
+    } */
 /*function preFillEditForm(id)
     {
         let result = todoList.find(todoObj => todoObj.id == id);
@@ -89,130 +101,99 @@
                 document.getElementById("end").value = end;
 
                 changeBtn.dataset.id = id;
-    }*/
-
+    } */
+/*
     function buttonTest()
     {
         //var element = document.getElementById("edit-events");
         //element.classList.toggle("slideIntoView");
-    }
-
+    } */
+/*
     function closeEditModalBox(event)
     {
        // document.getElementById("edit-events").classList.remove("slideIntoView");
     }
-
+*/
 
    });
-  function buttonTest()
+
+}
+function addEntry(event)
+{
+    let inputValue = inputElem.value;
+    inputElem.value = "";
+    let inputValue2 = inputElem2.value;
+    inputElem2.value = "";
+
+    let dataValue = dateInput.value;
+    dateInput.value = "";
+    let timeValue = timeInput.value;
+    timeInput.value = "";
+
+    let obj =
+    {
+        title: inputValue,
+        category: inputValue2,
+        date: dateValue,
+        time: timeValue,
+        done: false,
+
+    };
+
+    renderRow(obj);
+
+
+}
+function renderRow({ title: inputValue, category:inputValue2, id, date, time, done})
+{
+
+    //edit cell
+    let editSpan = document.createElement("span");
+    editSpan.innerText = "edit";
+    editSpan.addEventListener("click", toEditItem, false);
+    editSpan.dataset.id = id;
+    let editTd = document.createElement("edit-events");
+    editTd.appendChild(editSpan);
+    trElem.appendChild(editTd);
+}
+
+function toEditItem(event)
+{
+    showEditModelBox();
+    let id;
+    if(event.target)
+        id = event.target.dataset.id;
+    else
+        id = event.id;
+
+    fillEditForm(id);
+}
+function fillEditForm(id)
+{
+    let result = todoList.find(todoObj => todoObj.id == id);
+    let {todo, category, date, time} = result;
+
+    document.getElementById("todo-Title").value = todo;
+    document.getElementById("todo-Category").value = category;
+    document.getElementById("todo-Date").value = date;
+    document.getElementById("todo-Time").value = time;
+}
+function buttonTest()
     {
      /*the problem was that the script was not located within the body area of the work and-or the function was
       inside the function for the calendar that could be it as well! */
+      //var open = document.getElementById("edit-events");
+      //open.classList.toggle("slideIntoView");
 
-       var open = document.getElementById("edit-events");
-       open.classList.toggle("slideIntoView");
+
+
     }
-function myButton()
-    {
-     var element = document.getElementById("myDIV");
-     element.classList.toggle("style-test");
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*function events()
+function showEditModelBox()
 {
-var Draggable = FullCalendar.Draggable;
-
-var containerEl = document.getElementById('div1');
-
- new Draggable(containerEl, {
-    itemSelector: '.fc-event',
-    eventData: function(eventEl) {
-      return {
-        title: eventEl.innerText
-      };
-    }
-  });
+      document.getElementById("edit-events").classList.add("slideIntoView");
 }
-*/
-/*document.addEventListener('DOMContentLoaded', function())
-{
-    var Calendar = FullCalendar.Calendar;
-    var Draggable = FullCalendar.Draggable;
-
-    var containerE1 = document.getElementById('external-events');
-    var calendarE1 = document.getElementById('calendar');
-    var checkbox = document.getElementById('drop-remove');
-
-    new Draggable(containerE1,
-    {
-        itemSelector: '.fc-event',
-        eventData: function(eventE1)
-        {return {title: eventE1.innerText};}
-    });
-
-  var calendar = new Calendar(calendarEl, {
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    },
-    editable: true,
-    droppable: true, // this allows things to be dropped onto the calendar
-    drop: function(info) {
-      // is the "remove after drop" checkbox checked?
-      if (checkbox.checked) {
-        // if so, remove the element from the "Draggable Events" list
-        info.draggedEl.parentNode.removeChild(info.draggedEl);
-      }
-    }
-  });
-
-  calendar.render();
-});*/
-/*
-document.addEventListener('DOMContentLoaded', function())
-{
-    var Calendar = FullCalendar.Calendar;
-    var Draggable = FullCalendar.Draggable;
-
-    var containerE1 = document.getElementById("div1");
-    var calendarE1 = document.getElementById("calendar");
-
-    new Draggable(containerE1,
-    {
-        itemSelector: 'event_main2',
-        eventData: function(eventE1)
-        {
-            return {title: eventE1.innerText};
-        }
-    });
-
-}*/
+function myButton()
+  {
+   var element = document.getElementById("myDIV");
+   element.classList.toggle("style-test");
+  }
