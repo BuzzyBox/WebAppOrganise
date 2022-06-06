@@ -30,7 +30,7 @@
         <strong>Draggable Events</strong>
       </p>
       <!--Events-->
-      <div id ="categoryFilter">
+      <div id ="categoryFilter1">
       <div class='fc-event fc-h-event  fc-daygrid-event fc-daygrid-block-event'>
           <div class='fc-event-main'>My Event 1</div>
       </div>
@@ -48,9 +48,26 @@
   <!-- It is important that calendar is the group container as it will help drag events into it-->
 
 
+
+
 <div id = 'container'>
     <div id='calendar'></div>
 </div>
+
+<table id="todoTable" class=" todo-block">
+        <tr>
+          <td></td>
+          <td>Date</td>
+          <td>Time</td>
+          <td>to-do</td>
+          <td>
+            <select id="categoryFilter">
+            </select>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
 
 
 <button onclick="buttonTest()">Open Modal</button>
@@ -61,50 +78,52 @@
 		<span>Title: </span>
 		<input type="text" placeholder ="Enter Title" id = "todo-Title">
 		<span>Category:</span>
-		<input type="text" placeholder ="Enter Category" list="categoryList" id ="todo-Category">
-		<datalist id = "categoryList">
+		<input type="text" placeholder ="Enter Category" id ="todo-Category">
+		<datalist id = "categorydata">
 			<option value = "Personal"></option>
 			<option value = "Work"></option>
 		</datalist>
-		<span>Date:</span>
-		<input type="date" id="todo-Date">
+        <span>Date:</span>
+        <input type="date" id="dateInput">
 		<span>Time:</span>
-		<input type="time" id="todo-Time">
+		<input type="time" id="timeInput">
 		<span></span>
-		<button type="submit" id="addBtn" class="changeBtn btn btn-primary">Save</button>
+	    <button type = "submit" id="addBtn">Submit</button>
+        <span></span>
     </div>
     <button type="submit" class="event-modal-close-btn" id="event-modal-close-btn">X</button>
-
-<!--<form class="row g-3">
-    <div class="col-12">
-    <button class="event-modal-close-btn" id="event-modal-close-btn">X</button>
-  </div>
-  <div class="col-md-12">
-    <label for="title" class="form-label">Event Title</label>
-    <input type="text" class="form-control" name="title" id="title">
-  </div>
-
-  <div class="col-md-12">
-    <label for="start" class="form-label">Starting Date</label>
-    <input type="date" class="form-control" name="start" id="start">
-  </div>
-
-    <div class="col-md-12">
-    <label for="end" class="form-label">Ending Date</label>
-    <input type="date" class="form-control" name="end" id="end">
-    </div>
-    <button type="submit" id="changeBtn" class="changeBtn btn btn-primary" >Save</button>
-
-    </form>-->
-
     </div>
 </div>
 </div>
-  <button onclick="myButton()">Try it</button>
 
+<!--  <div class="todo-overlay" id="todo-overlay">
+    <div class="todo-modal" id="todo-modal">
+      <div class="todo-input todo-block">
+        <span>To-do: </span>
+        <input type="text" placeholder="Enter new to-do" id="todo-edit-todo">
+        <span>Category: </span>
+        <input type="text" placeholder="Enter category" list="categoryList"  id="todo-edit-category">
+        <datalist id="categoryList">
+          <option value="Personal"></option>
+          <option value="Work"></option>
+        </datalist>
+        <span>Date:</span>
+        <input type="date" id="todo-edit-date">
+        <span>Time:</span>
+        <input type="time" id="todo-edit-time">
+        <span></span>
+        <button id="changeBtn">Save Change</button>
+      </div>
+    </div>
+    <div class="todo-modal-close-btn" id="todo-modal-close-btn">X</div>
+  </div>-->
+
+
+<button id="sortBtn">Sort by Date</button>
+
+<!--  <button onclick="myButton()">Try it</button>
 <div id="myDIV">
 This is a DIV element.
-</div>
-
+</div>-->
   </body>
 </html>

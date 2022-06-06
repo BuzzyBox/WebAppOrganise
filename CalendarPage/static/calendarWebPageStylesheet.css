@@ -154,3 +154,9 @@ html, body {
   font-size: 25px;
   box-sizing: border-box;
 }
+
+td{
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
