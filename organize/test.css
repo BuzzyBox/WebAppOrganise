@@ -1,0 +1,135 @@
+body{
+    margin:0;
+    background-color: rgb(29, 29, 29);
+    ;
+}
+/* NAV */
+/* NAV STRT */
+nav {
+    list-style-type: none;
+    font-family:sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 240px;
+    background-color: #3a3a3a;
+    height: 100%; /*full height */
+    position:absolute; /* Make it stick, even on scroll */
+    overflow: auto; /* enable scrolling if the sidenav has too much content */
+    left: 0;
+    font-size: 16px;
+}
+li a {
+    display: block;     /* links as block elements, whole link area click */
+    color:white;
+    padding: 8px 1px; /*padding between pages*/
+    padding-top:20px;
+    text-decoration: none;
+    text-align: center;
+    background-color: #3a3a3a;
+  }
+  li h1,h3{
+      background-color: #3a3a3a;
+  }
+  
+  ul{
+      list-style-type: none;
+      background-color: #3a3a3a;
+  }
+    /* change link color on hover */
+    li a:hover {
+        background-color:#555;
+        color: #F3ECEC;
+      }
+      li:hover {
+    background-color: aqua;
+      }
+     .title { 
+        text-align: center;
+        color:white;
+       
+    }
+    .title1
+    {
+        text-align: center;
+        color:white;
+        background-color: #3C3939;
+        padding-top: 20px;
+    }
+    .divider{
+        border-top: 3px solid #bbb;
+    }
+/* NAV END */
+/* Nav end */
+/* FOLDER CONTAINER */
+.container {
+    background-color: #333;
+    padding: 1rem;
+    margin-top: 1rem;
+
+    position: relative;
+    left:0;
+    min-height: 274px;
+    max-height: 800px;
+    min-width:1000px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.draggable{
+    background-color:rgba(255, 245, 245, 0.945);
+    padding: 1rem;
+    margin-top: 1rem;
+    border:solid black;
+    cursor: move; /* change cursor */
+    width:128px;
+    height: 174px;
+    display: grid;
+}
+
+.draggable.dragging{
+opacity: 0.5;
+}
+.containerx{
+    background-color: #3a3a3a;
+    position: absolute;
+    left:35%;
+    top: 30%;
+    height:600px;
+}
+.containery{
+    background-color: #3a3a3a;
+    width: 1032px;
+    position: relative;
+    left:35%;
+    height:400px;
+    
+}
+
+.container#test{
+    display: hidden;
+}
+
+/* END FOLDERS */
+/* SCROLLBAR  */
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  /* SCrollbar end */
+

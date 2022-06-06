@@ -1,53 +1,58 @@
+/* NAV STRT */
 nav {
     list-style-type: none;
     font-family:sans-serif;
     margin: 0;
     padding: 0;
-    width: 15%;
+    width: 240px;
     background-color: #3a3a3a;
     height: 100%; /*full height */
     position:absolute; /* Make it stick, even on scroll */
     overflow: auto; /* enable scrolling if the sidenav has too much content */
     left: 0;
-     color:white;
+    font-size: 16px;
 }
-  
-  li a {
+li a {
     display: block;     /* links as block elements, whole link area click */
     color:white;
     padding: 8px 1px; /*padding between pages*/
     padding-top:20px;
     text-decoration: none;
     text-align: center;
+    background-color: #3a3a3a;
   }
+  li h1,h3{
+      background-color: #3a3a3a;
+  }
+  
   ul{
       list-style-type: none;
-      padding: none;
+      background-color: #3a3a3a;
   }
-  /* change link color on hover */
-  li a:hover {
-    background-color:#555;
-    color: #F3ECEC;
-  }
-  li:hover {
-background-color: aqua;
-  }
- .title { 
-    text-align: center;
-    color:white;
-    background-color: #3C3939;
-}
-.title1
-{
-    text-align: center;
-    color:white;
-    background-color: #3C3939;
-    padding-top: 20px;
-}
-.divider{
-    border-top: 3px solid #bbb;
-}
-/* NAV ENDS */
+    /* change link color on hover */
+    li a:hover {
+        background-color:#555;
+        color: #F3ECEC;
+      }
+      li:hover {
+    background-color: aqua;
+      }
+     .title { 
+        text-align: center;
+        color:white;
+       
+    }
+    .title1
+    {
+        text-align: center;
+        color:white;
+        background-color: #3C3939;
+        padding-top: 20px;
+    }
+    .divider{
+        border-top: 3px solid #bbb;
+    }
+/* NAV END */
 
 /* TABS STRS */
 *{

@@ -6,7 +6,7 @@ nav {
     font-family:sans-serif;
     margin: 0;
     padding: 0;
-    width: 15%;
+    width: 240px;
     background-color: #3a3a3a;
     height: 100%; /*full height */
     position:absolute; /* Make it stick, even on scroll */
@@ -58,11 +58,11 @@ li a {
 /* STRT PAPER */
 .Paper_container{
 position: relative;
-background: rgb(201, 201, 66);
-width: 605px;
-height:852px;
+background: rgba(0, 255, 255, 0.694);
+width: 609px;
+height:859px;
 top: 150px;
-left:600px;
+left:45%;
 }    
 .Paper_contents{
     position:absolute;
@@ -80,9 +80,126 @@ left:600px;
     height:842px;
     background-color: #F3ECEC
 }
-.papertext input{
-color: black;
-border: #F3ECEC
-
+.box{
+    width:595px;
+    height:842px;
+    background-color: white;
+}
+textarea{
+    resize: none;
 }
 /* END PAPER */
+
+/* TOOLBAR */
+.toolbar {
+    position: relative;
+    width:160px;
+    height:120px;
+    color:white;
+    background-color:#3a3a3a0c;
+    left:232px;
+    overflow: hidden;
+}
+/* Links inside toolbar */
+.toolbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+    
+.toolbar .dropbtn1{
+    padding: 14px 70px;
+    color:white;
+    border: none;
+    outline: none;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+}
+/* hover */
+.toolbar a:hover, .dropdown:hover .dropbtn1{
+    background-color: aqua;
+}
+/* dropdown hidden by default */
+.dropdown-file {
+    display: none;
+    z-index: 1;
+    min-width: 160px;
+    position: absolute;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(198, 198, 198, 0.032);
+}
+/* links inside dropdown */
+.dropdown-file a{
+    float: none;
+    display:block;
+    text-align:left;
+    text-decoration: none;
+    padding: 2px 16px;
+}
+.toolbar:hover .dropdown-file{
+    display: block;
+}
+.dropbtn1{
+    background-color: #3a3a3a;
+}
+/* toolbar2 */
+.toolbar1 {
+    position: relative;
+    width:160px;
+    height:120px;
+    color:white;
+    background-color:#3a3a3a0c;
+    left:393px;
+    top:-120px;
+    overflow: hidden;
+}
+/* Links inside toolbar */
+.toolbar1 a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.toolbar1 .dropbtn2{
+    padding: 14px 70px;
+    color:white;
+    border: none;
+    outline: none;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+}
+/* hover */
+.toolbar1 a:hover, .dropdown:hover .dropbtn2{
+    background-color: aqua;
+}
+/* dropdown hidden by default */
+.dropdown-insert {
+    display: none;
+    z-index: 1;
+    min-width: 160px;
+    position: absolute;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(198, 198, 198, 0.032);
+}
+/* links inside dropdown */
+.dropdown-insert a{
+    float: none;
+    display:block;
+    text-align:left;
+    text-decoration: none;
+    padding: 2px 16px;
+}
+.toolbar1:hover .dropdown-insert{
+    display: block;
+}
+.dropbtn2{
+    background-color: #3a3a3a;
+}
+/* toolbar3 */
+/* toolbar3*/
+/* END TOOLBAR */
