@@ -2,26 +2,13 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-"""
-events = [
-    {
-        'todo': 'EventTest',
-        'date': '2022-06-01',
-    },
-    {
-        'todo': 'EventTest2',
-        'date': '2022-06-02',
-    }
-]"""
-
 @app.route('/')
 def introduction():
-    return "Hello World"
-
+    return render_template('calendarWebPage.html')
 
 @app.route('/mycalendar')
 def index():
-    return render_template('calendarWebPage.html')  #, events = events
+    return render_template('calendarWebPage.html')
 
 
 if __name__ == '__main__':

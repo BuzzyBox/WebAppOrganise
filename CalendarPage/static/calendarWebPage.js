@@ -2,20 +2,27 @@ todoMain();
 function todoMain()
 {
   const DEFAULT_OPTION = "Choose category";
+  //variables
   let inputElem,
       inputElem2,
       dateInput,
       timeInput,
       selectElem,
       todoList =[];
-
+  //functions
   getElements();
   addListeners();
   renderRows(todoList);
   updateSelectOptions();
-  multipleFilter();
+//  multipleFilter();
+
+  //These should be within "addListeners" function but I still need to figure why they aren't working in there?
+  // add event for calendar
   addButton.addEventListener("click", addEntry, false);
+  //sort event by category
   sortButton.addEventListener("click", sortEntry, false);
+
+//Finding elements within the html file
 function getElements()
 {
   inputElem = document.getElementsByTagName("input")[0];
@@ -30,13 +37,13 @@ function getElements()
 function addListeners()
 {
 
-   // addButton.addEventListener("click", addEntry, false);
-   //selectElem.addEventListener("change", multipleFilter, false);
+//This area here is still a work in process
 
 }
-
+  //closing the modal box once again I still need to figure out how to implement into the "addListeners()" function
   document.getElementById("event-modal-close-btn").addEventListener("click", closeEditModalBox, false);
 
+// code for the calendar and the implementations of dates, months and as well for making events draggable and clickable
   document.addEventListener('DOMContentLoaded', function() {
          var Calendar = FullCalendar.Calendar;
          var Draggable = FullCalendar.Draggable;
@@ -78,6 +85,8 @@ function addListeners()
         }
     });
    });
+
+   //This area is opening the modal once the event is clicked on
    function toEditItem(event)
     { showEditModalBox();
     let id;
@@ -88,23 +97,20 @@ function addListeners()
 
     fillEditForm(id);
     }
+    //modal pop-up screen
     function  showEditModalBox()
     {
       document.getElementById("edit-events").classList.add("slideIntoView");
     }
+    //closing modal box
     function closeEditModalBox()
     {
    document.getElementById("edit-events").classList.remove("slideIntoView");
     }
-    function fillEditForm(id)
-    {
-
-
-    }
-
+    //Area to implement changes within the modal of event
     function addEntry(event)
     {
-        let inputValue = inputElem.value;
+       let inputValue = inputElem.value;
         inputElem.value = "";
 
         let inputValue2 = inputElem2.value;
@@ -136,9 +142,11 @@ function addListeners()
 
 
     }
+
+    //Choosing the category but it doesn't save it within the code so I need to figure out why it's doing that
     function updateSelectOptions()
     {
-    let options = [];
+     let options = [];
 
    todoList.forEach((obj) => {
       options.push(obj.category);
@@ -160,11 +168,13 @@ function addListeners()
       selectElem.appendChild(newOptionElem);
   }
 }
+    // events should save within the code but it's not working right now
     function save()
     {
     let stringfield = JSON.stringify(todoList);
     localStorage.setItem("todoList", stringfield);
     }
+    //loading the code for saved events
     function load()
     {
         let retrieved = localStorage.getItem("todoList");
@@ -174,13 +184,14 @@ function addListeners()
 
     }
 
-
+    //Render the tables and has influence over the calendar code
     function renderRows(arr){
     arr.forEach(todoObj => {
         renderRow(todoObj)
     })
 }
 
+//displays saved event and table of events It is still a big work in process right now...
 
  function renderRow({ todo: inputValue, category: inputValue2, id, date, time, done }) {
 
@@ -292,8 +303,7 @@ function addListeners()
     }
 
   }
-
-
+    //implementing data
     function _uuid()
     {
         var d = Date.now();
@@ -307,6 +317,7 @@ function addListeners()
         });
     }
 
+    //sorting the entry of the submitted event it's also suppose to sort the entry by category but that is not working right now
     function sortEntry()
     {
         todoList.sort((a, b) => {
@@ -323,6 +334,7 @@ function addListeners()
 
 
     }
+    // clears the current table of event
     function clearTable()
     {
         let trElems = document.getElementsByTagName("tr");
@@ -333,6 +345,7 @@ function addListeners()
 
         calendar.getElements().forEach(event=>event.remove());
     }
+
     function commitEdit(event)
     {
         closeEditModalBox();
@@ -384,21 +397,6 @@ function addListeners()
 
 
     }
-    function buttonTest()
-        {
-         /*the problem was that the script was not located within the body area of the work and-or the function was
-          inside the function for the calendar that could be it as well! */
-          //var open = document.getElementById("edit-events");
-          //open.classList.toggle("slideIntoView");
-       }
-
-
-    function myButton()
-      {
-       var element = document.getElementById("myDIV");
-       element.classList.toggle("style-test");
-      }
-
 
       function onTableClicked(event){
         if(event.target.matches("td") && event.target.dataset.editable == "true"){
@@ -462,38 +460,6 @@ function addListeners()
       }
 
     }
-
-    function multipleFilter()
-    {
-   /* let selection = selectElem.value;
-
-    if (selection == DEFAULT_OPTION) {
-
-      if(shortlistBtn.checked){
-        let filteredIncompleteArray = todoList.filter(obj => obj.done == false);
-        renderRows(filteredIncompleteArray);
-
-        let filteredDoneArray = todoList.filter(obj => obj.done == true);
-        renderRows(filteredDoneArray);
-      } else {
-        renderRows(todoList);
-      }
-
-    } else {
-      let filteredCategoryArray = todoList.filter(obj => obj.category == selection);
-
-      if(shortlistBtn.checked){
-        let filteredIncompleteArray = filteredCategoryArray.filter(obj => obj.done == false);
-        renderRows(filteredIncompleteArray);
-
-        let filteredDoneArray = filteredCategoryArray.filter(obj => obj.done == true);
-        renderRows(filteredDoneArray);
-      } else {
-        renderRows(filteredCategoryArray);
-      }*/
-
-    }
-
 
 }
 
