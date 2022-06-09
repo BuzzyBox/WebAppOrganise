@@ -60,13 +60,15 @@
             <div class="tab_content_box">
                 <h2>Scrums</h2>
                 <div class="scrums2">
-                    <div class="form">
+                    <!-- GET POST -->
+                    <div class="form" action="/addrec" method="post">
                         <ul>
-                            <li><input type="text" id="d" placeholder="notes"></li>
-                            <li><input type="text" id="d" placeholder="Name"></li>
-                            <li><input type="text" id="a" name="a" placeholder="What did you do today?"></li>
-                            <li><input type="text" id="b" name="b" placeholder="Obstacles faced?"></li>
-                            <li><input type="text" id="c" name="c" placeholder="What did you do yesterday?"></li>
+                            <li><input type="text" name="Notes" placeholder="Notes"></li>
+                            <li><input type="text" name="Name"  placeholder="Name"></li>
+                            <li><input type="text" name="Did_Today" placeholder="What did you do today?"></li>
+                            <li><input type="text" name="Obstacles_Faced" placeholder="Obstacles faced?"></li>
+                            <li><input type="text" name="Did_Yesterday" placeholder="What did you do yesterday?"></li>
+                            <li><button type="submit" name="Submit">submit</button></li>
                         </ul>
                     </div>
                 </div>
