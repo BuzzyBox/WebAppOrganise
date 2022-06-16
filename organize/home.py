@@ -12,8 +12,8 @@ def home():
 def new_user():
     return render_template('home.html')
 
-@app.route('/addrec', methods=['get','post'])
-def contact():
+@app.route('/UpdateUserByID', methods=['get','post'])
+def contact1():
     if request.method =='POST':
         try:
             Notes = request.form['Notes']
@@ -49,5 +49,37 @@ def list():
     rows = cur.fetchall()
     return render_template("home.html", rows = rows)
 
-if__name__ =='__main__':
+#URL CONNECT
+@app.route('/enternew')
+def new_scrums():
+    return render_template('home.html')
+#URL Connect to html get & post
+@app.route('/UpdateUserByID', methods=['GET','POST'])
+def contact():
+    if request.method == 'POST':
+        try:
+            Notes =request.form['Notes']
+            Name =request.form['Name']
+            Did_Today =request.form['Did_Today']
+            Obstacles_Faced=request.form['Obstacles_Faced']
+            Did_Yesterday= request.form['Did_Yesterday']
+            if not Notes or Name or Did_Today or Obstacles_Faced or Did_Yesterday:
+                with sql.connect("Student.db") as con:
+                    cur = con.cursor()
+                    cur.execute("insert into User(Notes, Name,Did_Today,Obstacles_Faced,Did_Yesterday) values(?,?,?,?,?)",\
+                    (Notes,Name,Did_Today,Obstacles_Faced,Did_Yesterday))
+
+                    con.commit()
+                    msg= "Yes"
+            else:
+                msg= "ERROR in insert operation"
+                con.rollback()
+        except:
+            msg= "error in insert operation"
+            con.rollback()
+        finally:
+            return render_template('home.html',msg= msg)
+            con.close()
+
+if __name__ =='__main__':
     app.run(debug=True)

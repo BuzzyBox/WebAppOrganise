@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="Home.css" hreflang="test.py" type="text/css">
+<link rel="stylesheet" href="Home.css" hreflang="home.py" type="text/css">
 </head>
 <body>
 <!-- NAV STRT -->
@@ -56,15 +56,20 @@
             </div>
 <!-- MESSAGES END -->
             <input type="radio" checked id="tab2" name="1">
+            
  <!-- SCRUMS -->
             <div class="tab_content_box">
                 <h2>Scrums</h2>
                 <div class="scrums2">
                     <!-- GET POST -->
-                    <div class="form" action="/addrec" method="post">
+                    <a href="/enternew">Add New Scrums</a>
+                    <div class="form" action="/UpdateUserByID" method="get">
                         <ul>
-                            <li><input type="text" name="Notes" placeholder="Notes"></li>
+                            <br>
+                            <li><input type="text" name="Notes" placeholder="Notes" value={{row[0]}}></li>
+                            <br>
                             <li><input type="text" name="Name"  placeholder="Name"></li>
+                            
                             <li><input type="text" name="Did_Today" placeholder="What did you do today?"></li>
                             <li><input type="text" name="Obstacles_Faced" placeholder="Obstacles faced?"></li>
                             <li><input type="text" name="Did_Yesterday" placeholder="What did you do yesterday?"></li>
@@ -75,6 +80,7 @@
             </div>
 <!-- SCRUMSEND -->
         </div>
+         <!-- TABSEND -->
         <div class="Userprofile">
             <img src ="images/blue.png" alt="avatar">
             <div class="Userdetails">
@@ -82,10 +88,11 @@
                     <li><input type="text" placeholder="Name"></li>
                     <li><input type="text" placeholder="Bio"></li>
                     <li><input type="text" placeholder="location"></li>
+                    <li><button name="P_Submit">submit</button></li>
                 </ul>
             </div>
          </div>
- <!-- TABSEND -->
+
 
     
 
