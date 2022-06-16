@@ -1,19 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_mysqldb import MySQL
-import MySQLdb.cursors
-import re
 app=Flask(__name__)
+import sqlite3 as sql
 
-app.secret_key = 'BLUE'
-
-
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Tassy.2020'
-app.config['MYSQL_DB'] = 'pythonlogin'
-
-
-mysql = MySQL(app)
+con = sql.connect("users.db")
+cur = con.cursor()
 
 @app.route('/')
 def mainP():
@@ -29,7 +19,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         # Check if account exists using MySQL
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor = sql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
         # Fetch one record and return result
         account = cursor.fetchone()
