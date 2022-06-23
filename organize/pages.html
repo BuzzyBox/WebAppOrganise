@@ -6,7 +6,7 @@
 
     </head>
     <body>
-        <!-- NAV STRT -->
+<!-- NAV STRT -->
         <nav>    
             <ul>
                 <li><div class="title"><h1>Organize</h1></div></li>
@@ -18,8 +18,8 @@
                 <li></li>
             </ul>
         </nav>
-        <!-- NAV END -->
-        <!-- TOOL BAR -->
+<!-- NAV END -->
+<!-- TOOL BAR -->
         <!-- container -->
         <div class="toolbar">
                 <!-- button -->
@@ -28,11 +28,11 @@
                 </button>
                 <!-- dropdwn content -->
                 <div class="dropdown-file">
-                    <a type="button">save</a>
-                    <a type="button">delete</a>
+                    <a type="button" onclick="save">save</a>
+                    <a type="button" id="download">export</a>
                     <a type="button">share</a>
                 </div>
-         
+                <!-- Dropdwn content END -->
             </div>
         </div>
         <div class="toolbar1">
@@ -45,14 +45,53 @@
                 <a type="button">page</a>
             </div>
         </div>      
-        <!-- END TOOLBAR -->
-        <!-- PARENT PAPER COTAINER -->
-        <div class="Paper_container">
-            <!-- STRT PAPER -->
-            <div class="Paper_contents" input="text"> 
-                    <textarea class="box"></textarea>
-            </div>
-        </div>
-        <!-- PAPER END -->
+<!-- END TOOLBAR -->
+<!-- PAPER COTAINER -->
+<!-- input filename -->
+
+<input  placeholder="filename.txt" id="filename">
+        
+<div class="Paper_container">
+     <!-- STRT PAPER -->
+    <!-- input place -->
+    <textarea class="box" placeholder="Type your text here try export..." id ="text">
+    </textarea>
+</div>
+<!-- END PAPER COTAINER -->
+<!-- JAVA -->
+<script type="text/javascript">
+    //saving text area content in var using id
+    function downloadFile(filename,content){
+        //download attribute of the <a> element
+        const element = document.createElement('a');
+        //blob = datatype that can store binary data
+        const blob = new Blob([content],{
+            type: 'plain/text'
+        });
+         //URL representing object given
+        const fileUrl =URL.createObjectURL(blob);
+        //setAttribute sets the value of an attribute on the specified element
+        element.setAttribute('href',fileUrl); //FIE LOCATION
+        element.setAttribute('download',filename);//FILE NAME
+        element.style.display='none';
+        //move an element from one element to another
+        document.body.appendChild(element);
+        element.click();
+        //removes child node from  DOM and returns the removed node
+        document.body.removeChild(element);
+
+        };
+        window.onload = () => {
+            document.getElementById('download').addEventListener('click',e =>{
+               //value of filename input
+                const filename =document.getElementById('filename').value;
+                 //value of text area input
+                const content =document.getElementById('text').value;
+        if(filename&& content){
+            downloadFile(filename,content);
+        }
+            })
+        }
+</script>
     </body>
 </html>

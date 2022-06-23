@@ -1,7 +1,7 @@
 body{
     margin:0;
     background-color: rgb(29, 29, 29);
-    ;
+    font-family:sans-serif;
 }
 /* NAV */
 /* NAV STRT */
@@ -63,53 +63,96 @@ li a {
 /* FOLDER CONTAINER */
 .container {
     background-color: #333;
-    padding: 1rem;
-    margin-top: 1rem;
+    /* padding: 1rem;
+    margin-top: 1rem; */
 
     position: relative;
-    left:0;
-    min-height: 274px;
+    
+    /* min-height: 274px;
     max-height: 800px;
-    min-width:1000px;
+    min-width:1000px; */
     display: grid;
     grid-template-columns: auto auto auto auto;
-    overflow-y: scroll;
-    overflow-x: hidden;
+ 
 }
 .draggable{
     background-color:rgba(255, 245, 245, 0.945);
     padding: 1rem;
     margin-top: 1rem;
-    border:solid black;
+    border:solid rgba(0, 0, 0, 0.715);
     cursor: move; /* change cursor */
     width:128px;
     height: 174px;
     display: grid;
+    margin-left: 2rem;
 }
 
 .draggable.dragging{
 opacity: 0.5;
 }
+/* div */
 .containerx{
-    background-color: #3a3a3a;
-    position: absolute;
+    background-color: aqua;
+    position: relative;
     left:35%;
     top: 30%;
     height:600px;
+    width:50%;
+    margin-top: 1rem;
+    display: grid;
+    border: #F3ECEC;
+    /* min-width:1000px; */
 }
+.container#testy{
+    width:100%;
+    position: absolute;
+    max-height: 800px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 3.5rem;
+}
+.containerx h1{
+    text-align: center;
+    color:rgb(29, 29, 29);
+    position: relative;
+ 
+}
+/* div */
+/* Container 1 */
 .containery{
     background-color: #3a3a3a;
-    width: 1032px;
+    /* border:#f1f1f1;
+    border-width: 2rem; */
+    width: 50%;
     position: relative;
     left:35%;
     height:400px;
-    
+    display: grid;
+    grid-template-columns:repeat(3,1fr);
+    margin-top: 1rem;
+}
+.containery h2{
+    text-align: center;
+    color: #bbb;
 }
 
 .container#test{
-    display: hidden;
-}
+    background: aqua;
 
+    min-width: 128px;
+    min-height: 128px;
+    width:20%;
+    height: 35%;
+    margin-top: 3rem;
+    left:25%;
+
+}
+/* Elements hidden */
+.container#test .draggable{
+    display: none;
+
+}
+/* END Conatiner1 */
 /* END FOLDERS */
 /* SCROLLBAR  */
 /* width */
@@ -131,5 +174,29 @@ opacity: 0.5;
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-  /* SCrollbar end */
+  /* SCROLLBAR END */
+  /* TOOLBAR */
+.Toolbar{
+    background: #555;
+    height:50px;
+    border-bottom: aqua;
+    border-width: 2rem;
+}
+.Toolbar img{
+    position: absolute;
+    display: grid; margin-left: 1rem;
+    top:0%;
+    height:50px;
+    cursor: pointer;
+}
+.c{
+    position: absolute;
+    left:30%;
+}
+.B{
+    position: absolute;
+    left:25%;
+}
+
+  /* TOOLBAR END */
 

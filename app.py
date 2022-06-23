@@ -1,19 +1,13 @@
+
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_mysqldb import MySQL
-import MySQLdb.cursors
-import re
 app=Flask(__name__)
-
-app.secret_key = 'BLUE'
-
-
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Tassy.2020'
-app.config['MYSQL_DB'] = 'pythonlogin'
+app.secret_key = 'many random bytes'
+import sqlite3 as sql
 
 
-mysql = MySQL(app)
+
+con = sql.connect("users.db")
+cur = con.cursor()
 
 @app.route('/')
 def mainP():
@@ -22,30 +16,32 @@ def mainP():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-     msg = 'Incorrect Username and/or password. Try again'
-            # Check if "username" and "password" POST requests exist (user submitted form)
-     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        # Create variables for easy access
-        username = request.form['username']
-        password = request.form['password']
-        # Check if account exists using MySQL
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
-        # Fetch one record and return result
-        account = cursor.fetchone()
-        # If account exists in accounts table in out database
-        if account:
-            # Create session data, we can access this data in other routes
+     
+    with sql.connect("users.db") as con:
+
+      if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+         # Create variables for easy access
+         U_userName = request.form['username']
+         U_password = request.form['password']
+         cur = con.cursor()
+         sq = 'SELECT U_userName, U_password FROM users WHERE U_userName = ?, U_password= ?'
+         args = (U_userName, U_password)
+         cur.execute(sq, args)
+      
+         users = cur.fetchone()
+         cur.close()
+        
+         if users:
             session['loggedin'] = True
-            session['id'] = account['id']
-            session['username'] = account['username']
+            #session['U_ID'] = users['U_ID']
+            session['U_userName'] = users['U_userName']
             # Redirect to home page
             return redirect(url_for('home'))
-        else:
+         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect username/password!'
     # Show the login form with message (if any)
-     return render_template('login.html', msg=msg)
+      return render_template('login.html')
      
 @app.route('/login/logout')
 def logout():
@@ -67,7 +63,7 @@ def register():
         password = request.form['password']
         email = request.form['email']
             # Check if account exists using MySQL
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor = sql.connection.cursor(sql.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE username = %s', (username,))
         account = cursor.fetchone()
         # If account exists show error and validation checks
@@ -82,7 +78,7 @@ def register():
         else:
             # Account doesnt exists and the form data is valid, now insert new account into accounts table
             cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, password, email,))
-            mysql.connection.commit()
+            sql.connection.commit()
             msg = 'You have successfully registered!'
     elif request.method == 'POST':
         # Form is empty... (no POST data)
@@ -96,7 +92,7 @@ def home():
     if 'loggedin' in session:
             
         # We need all the account info for the user so we can display it on the profile page
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor = sql.connection.cursor(sql.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE id = %s', (session['id'],))
         account = cursor.fetchone()
         # Show the profile page with account info
@@ -109,7 +105,7 @@ def profile():
     # Check if user is loggedin
     if 'loggedin' in session:
         # We need all the account info for the user so we can display it on the profile page
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor = sql.connection.cursor(sql.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE id = %s', (session['id'],))
         account = cursor.fetchone()
         # Show the profile page with account info

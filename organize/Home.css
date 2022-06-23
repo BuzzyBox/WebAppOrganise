@@ -1,4 +1,7 @@
 /* NAV STRT */
+body{
+    background-color:rgb(29, 29, 29) ;
+}
 nav {
     list-style-type: none;
     font-family:sans-serif;
@@ -36,6 +39,7 @@ li a {
       }
       li:hover {
     background-color: aqua;
+
       }
      .title { 
         text-align: center;
@@ -70,9 +74,9 @@ body
 .container
  {
     max-width:452px;
-    margin:50px auto;
+    margin:1rem;
     position: relative;
-    left:20%;
+    left:50%;
     bottom: 10%;
     
    
@@ -144,6 +148,8 @@ color:white;
 background: yellow;
 padding:20px;
 height: 590px;
+display: grid;
+    grid-template-columns: auto auto auto auto;
 
 }
 .tab_content_box h2{
@@ -168,7 +174,7 @@ height: 590px;
     left:40px;
 }
 .scrums2 input{
-    width:110%;
+    width:99%;
     height:30px;
     margin:8px;
     padding:8px;

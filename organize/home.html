@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="Home.css" hreflang="test.py" type="text/css">
+<link rel="stylesheet" href="Home.css" hreflang="home.py" type="text/css">
 </head>
 <body>
-        <!-- NAV STRT -->
-        <nav>    
-            <ul>
-                <li><div class="title"><h1>Organize</h1></div></li>
-                <li><a href="test.html">Folders</a></li>
-                <li><a href="#">Timeline</a></li>
-                <li><a href="pages.html">Pages</a></li>
-                <li><a href="home.html">Meetings</a></li>
-                <li><div class="title1"><h3>documents</h3></div></li>
-                <li></li>
-            </ul>
-        </nav>
-        <!-- NAV END -->
+<!-- NAV STRT -->
+<nav>    
+    <ul>
+        <li><div class="title"><h1>Organize</h1></div></li>
+        <li><a href="test.html">Folders</a></li>
+        <li><a href="#">Timeline</a></li>
+        <li><a href="pages.html">Pages</a></li>
+        <li><a href="home.html">Meetings</a></li>
+        <li><div class="title1"><h3>documents</h3></div></li>
+        <li></li>
+    </ul>
+</nav>
+<!-- NAV END -->
  <!-- TABS -->
     <div class="container">
         <div class="tab_trigger">
@@ -56,23 +56,31 @@
             </div>
 <!-- MESSAGES END -->
             <input type="radio" checked id="tab2" name="1">
+            
  <!-- SCRUMS -->
             <div class="tab_content_box">
                 <h2>Scrums</h2>
                 <div class="scrums2">
-                    <div class="form">
+                    <!-- GET POST -->
+                    <a href="/enternew">Add New Scrums</a>
+                    <div class="form" action="/UpdateUserByID" method="get">
                         <ul>
-                            <li><input type="text" id="d" placeholder="notes"></li>
-                            <li><input type="text" id="d" placeholder="Name"></li>
-                            <li><input type="text" id="a" name="a" placeholder="What did you do today?"></li>
-                            <li><input type="text" id="b" name="b" placeholder="Obstacles faced?"></li>
-                            <li><input type="text" id="c" name="c" placeholder="What did you do yesterday?"></li>
+                            <br>
+                            <li><input type="text" name="Notes" placeholder="Notes" value={{row[0]}}></li>
+                            <br>
+                            <li><input type="text" name="Name"  placeholder="Name"></li>
+                            
+                            <li><input type="text" name="Did_Today" placeholder="What did you do today?"></li>
+                            <li><input type="text" name="Obstacles_Faced" placeholder="Obstacles faced?"></li>
+                            <li><input type="text" name="Did_Yesterday" placeholder="What did you do yesterday?"></li>
+                            <li><button type="submit" name="Submit">submit</button></li>
                         </ul>
                     </div>
                 </div>
             </div>
 <!-- SCRUMSEND -->
         </div>
+         <!-- TABSEND -->
         <div class="Userprofile">
             <img src ="images/blue.png" alt="avatar">
             <div class="Userdetails">
@@ -80,10 +88,11 @@
                     <li><input type="text" placeholder="Name"></li>
                     <li><input type="text" placeholder="Bio"></li>
                     <li><input type="text" placeholder="location"></li>
+                    <li><button name="P_Submit">submit</button></li>
                 </ul>
             </div>
-    </div>
- <!-- TABSEND -->
+         </div>
+
 
     
 
