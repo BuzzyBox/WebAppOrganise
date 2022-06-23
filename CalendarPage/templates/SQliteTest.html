@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+    {% include "header.html" %}
+
+<head>
+    <title>Calendar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
+    <script>
+          $(document).ready(function() {
+            var calendar = $('#calendar').fullCalendar({
+                droppable:true,  
+                selectable:true,
+                selectHelper: true,
+                
+                // select: function (start, end, allDay)
+                // {
+                //     var eventData;
+                //     eventData = {
+                //         color:$("#colorPicker").val()
+                //     }
+                    // var title = prompt("Enter Event Title");
+                    // if(title)
+                    // {
+                    //     var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                    //     var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+
+                    //     $.ajax({
+                    //      url:"/insert",
+                    //      type:"POST",
+                    //     data:{title:title, start:start, end:end},
+                    //      success:function(data)
+                    //     {
+                    //      //alert(data)
+                    //      alert("Added Successfully");
+                    //      window.location.replace("/");
+                    //       }
+                    //  })
+                // }
+                // },
+                
+                editable:true,
+                eventResize:function(event)
+                {
+                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                    var title = event.title;
+                    var id = event.id;
+                    $.ajax({
+                        url:"/update",
+                        type:"POST",
+                        data:{title:title, start:start, end:end, id:id},
+                        success:function(){
+                            calendar.fullCalendar('refetchEvents');
+                            alert('Event Update');
+                        }
+                    })
+                },
+                eventDrop:function(event)
+                {
+                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                    var title = event.title;
+                    var id = event.id;
+                    $.ajax({
+                        url:"/update",
+                        type:"POST",
+                        data:{title:title, start:start, end:end, id:id},
+                        success:function(){
+                            calendar.fullCalendar('refetchEvents');
+                            alert('Event Update');
+                        }
+                    })
+                },
+                eventClick:function(event)
+                  {
+                    var back = ["#ff0000","blue","gray"];
+                    var rand = back[Math.floor(Math.random() * back.length)];
+                    event.backgroundColor = rand;
+                    $('#calendar').fullCalendar('rerenderEvents', 'updateEvents');
+                    // event.backgroundColor = $(#colorPicker).val();
+                    // $('#calendar').fullCalendar('rerenderEvents', 'updateEvents' );
+
+                    //  if(confirm("Are you sure you want to remove it?"))
+                    //  {
+                    //   var id = event.id;
+                    //     $.ajax({
+                    //      url:"/ajax_delete",
+                    //      type:"POST",
+                    //      data:{id:id},
+                    //      success:function()
+                    //      {
+                    //      calendar.fullCalendar('refetchEvents');
+                    //      alert("Event Removed");
+                    //      }
+                    //      })
+                    // } 
+                  },
+                header:{
+                    right: 'today,prev,next',
+                    center: 'title',
+                    left: 'month,agendaWeek,agendaDay'
+                },
+                events:[{% for row in calendar %}{ id : '{{row.id}}', title : '{{row.title}}', start : '{{row.start_event}}', end : '{{row.end_event}}', }, {% endfor %}],
+               
+            });
+          });
+
+        //   $(document).ready(function() {
+        //      $("a.ajax_delete").click(function() {
+        //     var form = $('<form action="/ajax_delete' + this.dataset.id + '" method="post"></form>');
+        //      form.submit();
+        //      });
+        //  });
+
+
+
+
+    // Delete row on delete button click
+            // $(document).on("click", ".delete", function(){
+            //     $(this).parents("tr").remove();
+            //     $(".add-new").removeAttr("disabled");
+            //     var id = $(this).attr("id");
+            //     var string = id;
+            // $.post("/ajax_delete", { string: string}, function(data) {
+            //     $("#displaymessage").html(data);
+            //     $("#displaymessage").show();
+            //     });
+            // });
+
+    </script>
+
+  
+</head>
+<body>
+    {% block body %}
+    <!-- <br />
+    <h2><a href="#">FullCaendar test with jQuery, mySQL and Ajax with CRUD</a></h2>
+    <br /> -->
+  
+
+
+    <div class = "container">
+
+            <!-- <div id='external-event'>
+   
+              <p class = "event-heading">
+                <strong>Draggable Events</strong>
+              </p>
+     
+              <div id ="categoryFilter1">
+              <div class='fc-event fc-h-event  fc-daygrid-event fc-daygrid-block-event'>
+                  <div class='fc-event-main'>My Event 1</div>
+              </div>
+              <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                  <div class='fc-event-main'>My Event 2</div>
+              </div>
+              <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                  <div class='fc-event-main'>My Event 3</div>
+              </div>
+              </div>
+        
+          </div> -->
+        <div id ="calendar"></div>
+        <!-- <span><input type = 'color' id="colorPicker"></span> -->
+ <!-- <input type = "color" class = "form-control" name="color"> -->
+                               
+
+        <div class="row">
+            <div class="col md-12">
+                <h2>Calendar List<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add Calendar Data</button></h2>
+                
+            {%with messages = get_flashed_messages()%}
+
+            {%if messages%}
+        
+            {% for message in messages %}
+        
+            <div class="alert alert-success alert-dismissable" role="alert">
+        
+             <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+        
+                 <span aria-hidden="true">&times;</span>
+        
+             </button>
+                {{message}}
+        
+        
+            </div>
+        
+        
+            {%endfor%}
+            {%endif%}
+            {%endwith%}
+            <table class="table table-striped">
+                
+                <tr>
+                    
+                    <th>Title</th>
+                    <th>Starting Date</th>
+                    <th>Ending Date</th>
+                    
+                    </tr>
+                    
+                 {% for row in calendar %}
+                 <tr>
+                    <td>{{row.title}}</td>
+                    <td>{{row.start_event}}</td>
+                    <td>{{row.end_event}}</td>
+                    <td>
+    
+               <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a> 
+               <a href="{{url_for('ajax_delete', id=row.id)}}" class="btn btn-danger btn-xs" onclick="confirm('Are You Sure For Delete?')">Delete</a>
+               <!-- <a href="/ajax_delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="confirm('Are You Sure For Delete?')">Delete</a> -->
+     
+               <!-- <a class="delete btn btn-danger btn-xs" title="Delete" data-toggle="tooltip" id="{{row.id}}" onclick="confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>  -->
+               
+  
+
+            </td>
+            </tr>
+    
+            <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Update Information</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                           <form action="{{ url_for('update')}}" method="POST"> 
+                            
+                               <div class="form-group">
+
+                                <input type = "hidden" name = "id" value="{{row.id}}">
+                                
+                                <label>Title:</label>
+                                <input type="text" class="form-control" name="title" value="{{row.title}}">
+             
+             
+    
+                               <div class="form-group">
+                                <label>Starting Date:</label>
+                                <input type="text" class="form-control" name="start" value="{{row.start_event}}">
+                             </div>
+              
+              
+                             <div class="form-group">
+                                <label>Ending Date:</label>
+                                <input type="text" class="form-control" name="end" value="{{row.end_event}}">
+                             </div>
+
+              
+                             <div class="form-group">
+                                <button class="btn btn-primary" type="submit">Update</button>
+                             </div>
+                           </form>
+                        </div>
+    
+                            
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+    
+                        </div>
+                    </div>    
+                </div>
+            </div>
+                {% endfor %}
+            
+                </tbody>
+    
+            </table>
+            </div>
+            <div id="myModal" class="modal fade" role="dialog">
+
+
+                <div class="modal-dialog">
+             
+             
+                   <div class="modal-content">
+             
+             
+                      <div class="modal-header">
+             
+             
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+             
+             
+                         <h4 class="modal-title">Please Insert Data</h4>
+             
+             
+                      </div>
+             
+             
+                      <div class="modal-body">
+             
+             
+                         <form action="{{ url_for('insert')}}" method="POST">
+             
+             
+                            <div class="form-group">
+             
+             
+                               <label>Title:</label>
+                               <input type="text" class="form-control" name="title" required="1">
+             
+             
+                            </div>
+             
+             
+                             <div class="form-group">
+             
+             
+                               <label>Starting Date:</label>
+                               <input type="text" class="form-control" name="start" required="1">
+             
+             
+                            </div>
+             
+             
+                             <div class="form-group">
+             
+             
+                               <label>Ending Date:</label>
+                               <input type="text" class="form-control" name="end" required="1">
+             
+             
+                            </div>
+
+                            <div class ="form-group">
+                                <label for="">Colour</label>
+                               
+                            </div>
+
+                            <div class="form-group">
+             
+             
+                               <button class="btn btn-primary" type="submit">Insert Data</button>
+             
+             
+                            </div>
+             
+             
+                         </form>
+             
+             
+                      </div>
+             
+             
+                      <div class="modal-footer">
+             
+             
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             
+             
+                      </div>
+             
+             
+                   </div>
+             
+             
+                </div>
+             
+             
+             </div>
+    
+    
+        </div>
+
+
+    </div>
+    {% endblock %}
+</body>
+</html>
