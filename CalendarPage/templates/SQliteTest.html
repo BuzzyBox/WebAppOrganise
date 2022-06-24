@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html>
+
+    <!--Main link for heder.html-->
     {% include "header.html" %}
 
 <head>
-    <title>Calendar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <!--Links to bootstrap scripts, 
+      ajax and cloudflare scripts,
+   fullcalendar scripts for v3 from memory-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-
-  <link rel = "stylesheet" href="/static/CalendarTestCSS.css" />
   
+    <!--Style sheets for web application, planner table and calendar-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+  <link rel = "stylesheet" href="/static/CalendarTestCSS.css" />
+
  
+    <!--Script for coding in the fullcalendar and the SQL data for the planner application. 
+        I have attempted to implement this into a .js file with no success. 
+        So it remains here in the main HTML file.-->
     <script>
+         $(document).ready(function() {
 
-
-          $(document).ready(function() {
-
-            // $("#fileInput").change(function(){
-        
-            // })
+            // Accessing the fullcalendar code
 
             var calendar = $('#calendar').fullCalendar({
                 droppable:true,  
                 selectable:true,
                 selectHelper: true,
-                
-                select: function (start, end, allDay)
-                {
-
-                //     var eventData;
-                //     eventData = {
-                //         color:$("#colorPicker").val()
-                //     }
-                //     var title = prompt("Enter Event Title");
-                //     if(title)
-                //     {
-                //         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                //         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-
-                //         $.ajax({
-                //          url:"/insert",
-                //          type:"POST",
-                //         data:{title:title, start:start, end:end},
-                //          success:function(data)
-                //         {
-                //          //alert(data)
-                //          alert("Added Successfully");
-                //          window.location.replace("/");
-                //           }
-                //      })
-                // }
-                },
-                
-              
-
-
                 editable:true,
+
+                //Resizing the events within calendar, so far it works well within the week and day format 
+                //But haven't figure out why it doesn't work within the month format though 
+
                 eventResize:function(event)
                 {
                     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
@@ -78,6 +56,9 @@
                         }
                     })
                 },
+
+                //Dropping your current event into the a different day, week and/or month
+
                 eventDrop:function(event)
                 {
                     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
@@ -95,6 +76,8 @@
                     })
                 },
                  
+                //changing the events' colours but I couldn't figure how the permanently keep the change while the web page is refreashed or updated 
+
                 eventClick:function(event)
                 {   
                     var back = ["#DB7093","#2E8B57","#708090","#008080","#FF6347",
@@ -109,7 +92,8 @@
                              
                 },
 
-                  
+                //hearders that display what month it currently is, 
+                //and selecting day/week/month buttons
 
                 header:{
                     right: 'today,prev,next',
@@ -117,11 +101,15 @@
                     left: 'month,agendaWeek,agendaDay'
                 },
 
-         
+                //This is where I store the current SQL data into the calendar
+                //It says it's an error because it has the Jinja2 block code 
+                //But it is working just fine within the web application
                 
                 events:[
                    
-                    {% for row in calendar %}{ id : '{{row.id}}', title : '{{row.title}}', start : '{{row.start_event}}', end : '{{row.end_event}}',},{% endfor %}
+                    {% for row in calendar %}
+                    { id : '{{row.id}}', title : '{{row.title}}', start : '{{row.start_event}}', end : '{{row.end_event}}',},
+                    {% endfor %}
                     ],
           
                 
@@ -129,49 +117,23 @@
              });
           });
 
-        //   $(document).ready(function() {
-        //      $("a.ajax_delete").click(function() {
-        //     var form = $('<form action="/ajax_delete' + this.dataset.id + '" method="post"></form>');
-        //      form.submit();
-        //      });
-        //  });
-
-
-
-
-    // Delete row on delete button click
-            // $(document).on("click", ".delete", function(){
-            //     $(this).parents("tr").remove();
-            //     $(".add-new").removeAttr("disabled");
-            //     var id = $(this).attr("id");
-            //     var string = id;
-            // $.post("/ajax_delete", { string: string}, function(data) {
-            //     $("#displaymessage").html(data);
-            //     $("#displaymessage").show();
-            //     });
-            // });
-
     </script>
 
   
 </head>
 <body>
     {% block body %}
-    <!-- <br />
-    <h2><a href="#">FullCaendar test with jQuery, mySQL and Ajax with CRUD</a></h2>
-    <br /> -->
-  
 
+    <!--Container to hold everything in place-->
 
     <div class = "container">
-
-       
+        <!--Displaying the Calendar-->
         <div id ="calendar"></div>
-<!--        
-<span><input type='color' id='colorPicker'></span> -->
+        <!--Displaying the table planner-->
         <div class="row">
+            <!--Button for adding in new data for the calendar and table planner-->
             <div class="col md-12">
-                <h2 class = "CalendarList">Calendar List<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add Calendar Data</button></h2>
+                <h2 class = "CalendarList">Calendar List<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add New Event</button></h2>
                 
             {%with messages = get_flashed_messages()%}
 
@@ -195,6 +157,7 @@
             {%endfor%}
             {%endif%}
             {%endwith%}
+            <!--Displaying the table, titles and data-->
             <table class="table table-striped">
                 
                 <tr>
@@ -211,21 +174,21 @@
                     <td>{{row.start_event}}</td>
                     <td>{{row.end_event}}</td>
                     <td>
-    
+               <!--Buttons activating the edit modal or deleting the current data-->
                <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a> 
-               <a href="{{url_for('ajax_delete', id=row.id)}}" class="btn btn-danger btn-xs" onclick="confirm('Are You Sure For Delete?')">Delete</a>
+               <a href="{{url_for('ajax_delete', id=row.id)}}" class="btn btn-danger btn-xs" onclick="confirm('Are You Sure You Want To Delete This Event?')">Delete</a>
                
   
 
             </td>
             </tr>
-    
+            <!--Modal pop-up for editing current data-->
             <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Update Information</h4>
+                            <h4 class="modal-title">Update Current Events</h4>
                         </div>
                         <div class="modal-body">
                             
@@ -251,9 +214,9 @@
                                 <input type="datetime-local" class="form-control" name="end" value="{{row.end_event}}">
                              </div>
                             
-                            
+                            <!--Submit button for Update current data/events-->
                              <div class="form-group">
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <button class="btn btn-primary" type="submit">Update Event</button>
                              </div>
                            </form>
                         </div>
@@ -273,6 +236,9 @@
     
             </table>
             </div>
+
+               <!--Modal pop-up for adding in new data-->
+
             <div id="myModal" class="modal fade" role="dialog">
 
 
@@ -288,7 +254,7 @@
                          <button type="button" class="close" data-dismiss="modal">&times;</button>
              
              
-                         <h4 class="modal-title">Please Insert Data</h4>
+                         <h4 class="modal-title">Create New Events</h4>
              
              
                       </div>
@@ -328,22 +294,13 @@
              
              
                             </div>
-              
-                            <!-- <div class="form-group">
-                                <label>Upload Files "TEST":</label>
-                                <input type = "file" name="files[]" id="fileInput" class="form-control" multiple> 
-                             </div>
-              
 
-                            <div class ="form-group">
-                                <label for="">Colour</label>
-                                
-                            </div> -->
+                            <!--sumbit button for creating new data/event -->
 
                             <div class="form-group">
              
              
-                               <button class="btn btn-primary" type="submit">Insert Data</button>
+                               <button class="btn btn-primary" type="submit">Create Event</button>
              
              
                             </div>
@@ -371,9 +328,10 @@
              
              
              </div>
-    
-    
-        </div>
+        
+        
+            </div>
+
 
 
     </div>

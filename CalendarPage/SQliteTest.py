@@ -4,6 +4,11 @@ from flask_mysqldb import MySQL, MySQLdb
 app = Flask(__name__)
 app.secret_key = 'many random bytes'
 
+
+# Connecting to the MySQL server to import the data for the calendar and table planner
+# I am unsure how this will work for someone without MySQL or even if it makes a new database
+# So I highly suggest importing something to flask or python that supports this application
+
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
@@ -13,6 +18,9 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
 
+# Main page for the planner
+# If we had more time we would've connected each other's code to make the links work along with one another
+
 @app.route('/')
 def index():
     cursor = mysql.connection.cursor()
@@ -21,6 +29,8 @@ def index():
     calendar = cur.fetchall()
     return render_template('SQliteTest.html', calendar=calendar)
 
+
+# Inserting/Creating the main data for the calendar and table planner
 
 @app.route('/inset', methods=['POST'])
 def insert():
@@ -38,6 +48,8 @@ def insert():
         cur.close()
         return redirect(url_for('index'))
 
+
+# Changing the current data within the calendar and table planner
 
 @app.route("/update", methods=["POST", "GET"])
 def update():
@@ -58,6 +70,8 @@ def update():
         return redirect(url_for('index'))
 
 
+# Deleting the current data located within the calendar and table planner
+
 @app.route("/ajax_delete/<string:id>", methods=["GET", "POST"])
 def ajax_delete(id):
 
@@ -67,33 +81,6 @@ def ajax_delete(id):
     mysql.connection.commit()
     con.close()
     return redirect(url_for('index'))
-
-
-
-    # cursor = mysql.connection.cursor()
-    # cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    # if request.method == 'POST':
-    #     cur.execute('DELETE FROM events WHERE id = %s' % (id_data))
-    #     mysql.connection.commit()
-    #     cur.close()
-    #     flash("Record has been Deleted Successfully")
-    #     return redirect(url_for(index))
-
-
-
-    # cursor = mysql.connection.cursor()
-    # cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    # if request.method == 'POST':
-    #     flash("Record has been Deleted Successfully")
-    #     getid = request.form['string']
-    #     print(getid)
-    #     cur.execute('DELETE FROM events WHERE id = {0}'.format(getid))
-    #     mysql.connection.commit()
-    #     cur.close()
-    #
-    #     return redirect(url_for('index'))
-    #     msg = 'Record deleted successfully'
-    # return jsonify(msg)
 
 
 if __name__ == "__main__":

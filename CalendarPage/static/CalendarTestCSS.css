@@ -1,18 +1,19 @@
-
+/*ENTIRE BODY/BACKGROUD OF APPLICATION*/
 html, body {
     background: rgb(33, 32, 36);
     color: black;
     margin: 0;
     padding: 0;
-    /*text-align: center;*/
+
     font-family: 'Inter', sans-serif;
 
 
 }
+/*MAIN CALENDAR'S DESIGN*/
 #calendar
 {
     color: black;
-    /* position: sticky; */
+   
     top: 0;
     background: #FAF9F6;
     max-width: 1100px;
@@ -21,32 +22,23 @@ html, body {
     z-index: 1;
     margin-left: 0px;
 }
+/*MAIN TABLE/PLANNER DESIGN*/
 .row
 {
-
     color: black;
-    /* position: sticky; */
     background: #FAF9F6;
     max-width: 1100px;
     margin: 20px auto;
     border-radius: 10px;
     z-index: 1;
     margin-left: 0px;
-    /* position: fixed;
-    margin: 20px auto;
-    z-index: 2;
-    top: 0;
-    left: 15px;
-    width: 500px;
-    padding: 0 10px;
-    border: 1px solid rgb(228, 228, 228);
-    border-radius: 10px;
-    background: gray; */
 }
+/*DESIGN FOR "CREATE NEW EVENTS" BUTTON*/
 .btn-success
 {
    margin-right: 15px;
 }
+/*HEADING WITHIN PLANNER/TABLE */
 .CalendarList
 {
     margin-left: 10px;
