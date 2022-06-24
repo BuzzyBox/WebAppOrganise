@@ -8,44 +8,59 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
- 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 
+  <link rel = "stylesheet" href="/static/CalendarTestCSS.css" />
+  
+ 
     <script>
+
+
           $(document).ready(function() {
+
+            // $("#fileInput").change(function(){
+        
+            // })
+
             var calendar = $('#calendar').fullCalendar({
                 droppable:true,  
                 selectable:true,
                 selectHelper: true,
                 
-                // select: function (start, end, allDay)
-                // {
+                select: function (start, end, allDay)
+                {
+
                 //     var eventData;
                 //     eventData = {
                 //         color:$("#colorPicker").val()
                 //     }
-                    // var title = prompt("Enter Event Title");
-                    // if(title)
-                    // {
-                    //     var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                    //     var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+                //     var title = prompt("Enter Event Title");
+                //     if(title)
+                //     {
+                //         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                //         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
 
-                    //     $.ajax({
-                    //      url:"/insert",
-                    //      type:"POST",
-                    //     data:{title:title, start:start, end:end},
-                    //      success:function(data)
-                    //     {
-                    //      //alert(data)
-                    //      alert("Added Successfully");
-                    //      window.location.replace("/");
-                    //       }
-                    //  })
+                //         $.ajax({
+                //          url:"/insert",
+                //          type:"POST",
+                //         data:{title:title, start:start, end:end},
+                //          success:function(data)
+                //         {
+                //          //alert(data)
+                //          alert("Added Successfully");
+                //          window.location.replace("/");
+                //           }
+                //      })
                 // }
-                // },
+                },
                 
+              
+
+
                 editable:true,
                 eventResize:function(event)
                 {
@@ -79,38 +94,39 @@
                         }
                     })
                 },
+                 
                 eventClick:function(event)
-                  {
-                    var back = ["#ff0000","blue","gray"];
+                {   
+                    var back = ["#DB7093","#2E8B57","#708090","#008080","#FF6347",
+                                "#663399","#4169E1","#FA8072","#8B4513","#6B8E23",
+                                "#800000","#C71585","#7B68EE","#3CB371","#9370DB",
+                                "#4B0082","#FF69B4","#228B22","#B22222","#696969", 
+                                "#483D8B","#2E8B57","#FF4500","#2F4F4F","#DAA520"];
                     var rand = back[Math.floor(Math.random() * back.length)];
-                    event.backgroundColor = rand;
-                    $('#calendar').fullCalendar('rerenderEvents', 'updateEvents');
-                    // event.backgroundColor = $(#colorPicker).val();
-                    // $('#calendar').fullCalendar('rerenderEvents', 'updateEvents' );
+                   
+                    event.color = rand;
+                    calendar.fullCalendar('refetchEvents');
+                             
+                },
 
-                    //  if(confirm("Are you sure you want to remove it?"))
-                    //  {
-                    //   var id = event.id;
-                    //     $.ajax({
-                    //      url:"/ajax_delete",
-                    //      type:"POST",
-                    //      data:{id:id},
-                    //      success:function()
-                    //      {
-                    //      calendar.fullCalendar('refetchEvents');
-                    //      alert("Event Removed");
-                    //      }
-                    //      })
-                    // } 
-                  },
+                  
+
                 header:{
                     right: 'today,prev,next',
                     center: 'title',
                     left: 'month,agendaWeek,agendaDay'
                 },
-                events:[{% for row in calendar %}{ id : '{{row.id}}', title : '{{row.title}}', start : '{{row.start_event}}', end : '{{row.end_event}}', }, {% endfor %}],
-               
-            });
+
+         
+                
+                events:[
+                   
+                    {% for row in calendar %}{ id : '{{row.id}}', title : '{{row.title}}', start : '{{row.start_event}}', end : '{{row.end_event}}',},{% endfor %}
+                    ],
+          
+                
+              
+             });
           });
 
         //   $(document).ready(function() {
@@ -149,33 +165,13 @@
 
     <div class = "container">
 
-            <!-- <div id='external-event'>
-   
-              <p class = "event-heading">
-                <strong>Draggable Events</strong>
-              </p>
-     
-              <div id ="categoryFilter1">
-              <div class='fc-event fc-h-event  fc-daygrid-event fc-daygrid-block-event'>
-                  <div class='fc-event-main'>My Event 1</div>
-              </div>
-              <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                  <div class='fc-event-main'>My Event 2</div>
-              </div>
-              <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                  <div class='fc-event-main'>My Event 3</div>
-              </div>
-              </div>
-        
-          </div> -->
+       
         <div id ="calendar"></div>
-        <!-- <span><input type = 'color' id="colorPicker"></span> -->
- <!-- <input type = "color" class = "form-control" name="color"> -->
-                               
-
+<!--        
+<span><input type='color' id='colorPicker'></span> -->
         <div class="row">
             <div class="col md-12">
-                <h2>Calendar List<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add Calendar Data</button></h2>
+                <h2 class = "CalendarList">Calendar List<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add Calendar Data</button></h2>
                 
             {%with messages = get_flashed_messages()%}
 
@@ -218,9 +214,6 @@
     
                <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a> 
                <a href="{{url_for('ajax_delete', id=row.id)}}" class="btn btn-danger btn-xs" onclick="confirm('Are You Sure For Delete?')">Delete</a>
-               <!-- <a href="/ajax_delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="confirm('Are You Sure For Delete?')">Delete</a> -->
-     
-               <!-- <a class="delete btn btn-danger btn-xs" title="Delete" data-toggle="tooltip" id="{{row.id}}" onclick="confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>  -->
                
   
 
@@ -249,16 +242,16 @@
     
                                <div class="form-group">
                                 <label>Starting Date:</label>
-                                <input type="text" class="form-control" name="start" value="{{row.start_event}}">
+                                <input type="datetime-local" class="form-control" name="start" value="{{row.start_event}}">
                              </div>
               
               
                              <div class="form-group">
                                 <label>Ending Date:</label>
-                                <input type="text" class="form-control" name="end" value="{{row.end_event}}">
+                                <input type="datetime-local" class="form-control" name="end" value="{{row.end_event}}">
                              </div>
-
-              
+                            
+                            
                              <div class="form-group">
                                 <button class="btn btn-primary" type="submit">Update</button>
                              </div>
@@ -321,7 +314,7 @@
              
              
                                <label>Starting Date:</label>
-                               <input type="text" class="form-control" name="start" required="1">
+                               <input type="datetime-local" class="form-control" name="start" required="1">
              
              
                             </div>
@@ -331,15 +324,21 @@
              
              
                                <label>Ending Date:</label>
-                               <input type="text" class="form-control" name="end" required="1">
+                               <input type="datetime-local" class="form-control" name="end" required="1">
              
              
                             </div>
+              
+                            <!-- <div class="form-group">
+                                <label>Upload Files "TEST":</label>
+                                <input type = "file" name="files[]" id="fileInput" class="form-control" multiple> 
+                             </div>
+              
 
                             <div class ="form-group">
                                 <label for="">Colour</label>
-                               
-                            </div>
+                                
+                            </div> -->
 
                             <div class="form-group">
              
