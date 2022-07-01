@@ -73,6 +73,25 @@ def registerForm():
     elif request.method=='GET':
      return render_template('register.html', form=tamsForms)
 
+@app.route('/login/home')
+def home():
+ return render_template('home.html') 
+
+@app.route('/login/pages')
+def pages():
+ return render_template('pages.html') 
+
+@app.route('/login/cal')
+def calendar():
+ return render_template('SQliteTest.html') 
+
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
      app.run(debug=True)     

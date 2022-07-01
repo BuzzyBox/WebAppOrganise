@@ -1,0 +1,67 @@
+
+<head>
+	<meta charset="'UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"  >
+	<meta name="viewport" content="'width=device-width, initial-scale=1.0" >
+	<link rel="icon" type="image/x-icon" href="/static/tabICN.ico">
+	<link rel="stylesheet" href="{{ url_for('static', filename='loginStyle.css') }}">
+	<title>Organize - Smarter, Faster, Better</title>
+</head>
+<body>
+	<div> <br><a href="{{url_for('mainP')}}">
+		<img src="{{url_for('static', filename='logo1.png')}}"  width= "15%"/>
+	  </a><br>
+		
+		<br><br><br><br><br><br>
+       {% for message in form.U_fName.error%}
+      <div>{{message}}</div>
+     {%endfor%}
+     {% for message in form.U_lName.error%}
+      <div>{{message}}</div>
+     {%endfor%}
+      {% for message in form.U_username.error%}
+      <div>{{message}}</div>
+      {%endfor%}
+      {% for message in form.U_passWord.error%}
+      <div>{{message}}</div>
+      {%endfor%}
+        <form action="http://localhost:5000/register" method="post">
+   </div>
+ 	<div class="table-section">
+		<table style='margin-left:auto;margin-right:auto;color:rgb(255, 255, 255);'>
+			<caption>Organize Registration Form</caption>
+			<tr>
+				<td >{{form.U_fName.label}}</td>
+				<td>{{form.U_fName}}</td>
+			</tr>
+			<tr>
+				<td>{{form.U_lName.label}}</td>
+				<td>{{form.U_lName}}</td>
+			</tr>
+			<tr>
+				<td>{{form.U_username.label}}</td>
+				<td>{{form.U_username}}</td>
+			</tr>
+			<tr>
+				<td>{{form.U_passWord.label}}</td>
+				<td>{{form.U_passWord}}</td>
+			</tr>
+			<tr>
+				<td>{{form.U_email.label}}</td>
+				<td>{{form.U_email}}</td>
+			</tr>
+			<tr>
+				<td>{{form.U_company.label}}</td>
+				<td>{{form.U_company}}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>{{form.submit(class="anchor-button")}}</td>
+			</tr>
+		</table>
+	</div>
+</form>
+
+
+</body>
+

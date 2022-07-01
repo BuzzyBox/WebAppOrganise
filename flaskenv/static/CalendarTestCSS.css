@@ -1,0 +1,46 @@
+/*ENTIRE BODY/BACKGROUD OF APPLICATION*/
+html, body {
+    background: rgb(33, 32, 36);
+    color: black;
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Inter', sans-serif;
+
+
+}
+/*MAIN CALENDAR'S DESIGN*/
+#calendar
+{
+    color: black;
+   
+    top: 0;
+    background: #FAF9F6;
+    max-width: 1100px;
+    margin: 20px auto;
+    border-radius: 10px;
+    z-index: 1;
+    margin-left: 0px;
+}
+/*MAIN TABLE/PLANNER DESIGN*/
+.row
+{
+    color: black;
+    background: #FAF9F6;
+    max-width: 1100px;
+    margin: 20px auto;
+    border-radius: 10px;
+    z-index: 1;
+    margin-left: 0px;
+}
+/*DESIGN FOR "CREATE NEW EVENTS" BUTTON*/
+.btn-success
+{
+   margin-right: 15px;
+}
+/*HEADING WITHIN PLANNER/TABLE */
+.CalendarList
+{
+    margin-left: 10px;
+
+}

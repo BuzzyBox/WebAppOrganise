@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='Home.css') }}" hreflang="home.py" type="text/css">
+</head>
+<body>
+<!-- NAV STRT -->
+<nav>    
+    <ul>
+        
+            <li><div class="title"><h1>Organize</h1></div></li>
+            <li><a href="#"><i class=""></i>Folders</a></li>
+            <li><a href="{{url_for('calendar')}}"><i class=""></i>Calendar</a></li>
+            <li><a href="{{url_for('pages')}}"><i class=""></i>Pages</a></li>
+            <li><a href="{{url_for('home')}}"><i class=""></i>Meetings</a></li>
+            <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-out-alt"></i>Logout</a></li> 
+            <li><div class="title1"><h3>documents</h3></div></li>
+            <li></li>
+        
+    </ul>
+    
+        
+
+
+
+
+</nav>
+<!-- NAV END -->
+ <!-- TABS -->
+    <div class="container">
+        <div class="tab_trigger">
+            <ul>
+                <li><label for="tab1">Messages</label></li>
+                <li><label for="tab2">scrums</label></li>
+            </ul>
+        </div>
+        <div class="tab_container_wrap">
+            <input type="radio" checked id="tab1" name="1">
+<!-- MESSAGES -->
+            <div class="tab_content_box">
+                <h2>Messages</h2>
+                <div class="Messages">
+                    <div class="Search">
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <div class="User1">
+                        <img src="{{url_for('static', filename='pink.png')}}" alt="avatar">
+                        <h4>Jane Doe</h4>
+                        <p>Hows it going</p>
+                        <span class="time">11:00</span>
+                    </div>
+                    <div class="User2">
+                        <img src="{{url_for('static', filename='blue.png')}}" alt="avatar">
+                        <h4>Jane Doe</h4>
+                        <p>How are you my friend</p>
+                        <span class="time">11:00</span>
+                    </div>
+                    <div class="User3">
+                        <img src="{{url_for('static', filename='blue.png')}}" alt="avatar">
+                        <h4>Jane Doe</h4>
+                        <p>How are you my friend</p>
+                        <span class="time">11:00</span>
+                    </div>
+                </div>
+            </div>
+<!-- MESSAGES END -->
+            <input type="radio" checked id="tab2" name="1">
+            
+ <!-- SCRUMS -->
+            <div class="tab_content_box">
+                <h2>Scrums</h2>
+                <div class="scrums2">
+                    <!-- GET POST -->
+                    <a href="/enternew">Add New Scrums</a>
+                    <div class="form" action="/UpdateUserByID" method="get">
+                        <ul>
+                            <br>
+                            <li><input type="text" name="Notes" placeholder="Notes"></li>
+                            <br>
+                            <li><input type="text" name="Name"  placeholder="Name"></li>
+                            
+                            <li><input type="text" name="Did_Today" placeholder="What did you do today?"></li>
+                            <li><input type="text" name="Obstacles_Faced" placeholder="Obstacles faced?"></li>
+                            <li><input type="text" name="Did_Yesterday" placeholder="What did you do yesterday?"></li>
+                            <li><button type="submit" name="Submit">submit</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+<!-- SCRUMSEND -->
+        </div>
+         <!-- TABSEND -->
+        <div class="Userprofile">
+            <img src="{{url_for('static', filename='blue.png')}}" alt="avatar">
+            <div class="Userdetails">
+                <ul>
+                    <li><input type="text" placeholder="Name"></li>
+                    <li><input type="text" placeholder="Bio"></li>
+                    <li><input type="text" placeholder="location"></li>
+                    <li><button name="P_Submit">submit</button></li>
+                </ul>
+            </div>
+         </div>
+
+
+    
+
+ </div>
+</body>
+</html>
