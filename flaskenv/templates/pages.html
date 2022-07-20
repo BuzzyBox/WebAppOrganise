@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Organize</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='pages.css') }}" >
+
+    </head>
+    <body>
+<!-- NAV STRT -->
+        <nav>    
+            <ul>
+                <li><div class="title"><h1>Organize</h1></div></li>
+                <li><a href="#"><i class=""></i>Folders</a></li>
+                <li><a href="{{url_for('calendar')}}"><i class=""></i>Calendar</a></li>
+                <li><a href="{{url_for('pages')}}"><i class=""></i>Pages</a></li>
+                <li><a href="{{url_for('home')}}"><i class=""></i>Meetings</a></li>
+                <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-out-alt"></i>Logout</a></li> 
+                <li><div class="title1"><h3>documents</h3></div></li>
+                <li></li>
+            </ul>
+        </nav>
+<!-- NAV END -->
+<!-- TOOL BAR -->
+        <!-- container -->
+        <div class="toolbar">
+                <!-- button -->
+                <button class="dropbtn1">
+                    File <i class="down"></i>
+                </button>
+                <!-- dropdwn content -->
+                <div class="dropdown-file">
+                    <a type="button" onclick="save">save</a>
+                    <a type="button" id="download">export</a>
+                    <a type="button">share</a>
+                </div>
+                <!-- Dropdwn content END -->
+            </div>
+        </div>
+        <div class="toolbar1">
+            <button class="dropbtn2">
+                Insert <i class="down"></i>
+            </button>
+            <div class="dropdown-insert">
+                <a type="button">image</a>
+                <a type="button">table</a>
+                <a type="button">page</a>
+            </div>
+        </div>      
+<!-- END TOOLBAR -->
+<!-- PAPER COTAINER -->
+<!-- input filename -->
+
+<input  placeholder="filename.txt" id="filename">
+        
+<div class="Paper_container">
+     <!-- STRT PAPER -->
+    <!-- input place -->
+    <textarea class="box" placeholder="Type your text here try export..." id ="text">
+    </textarea>
+</div>
+<!-- END PAPER COTAINER -->
+<!-- JAVA -->
+<script type="text/javascript">
+    //saving text area content in var using id
+    function downloadFile(filename,content){
+        //download attribute of the <a> element
+        const element = document.createElement('a');
+        //blob = datatype that can store binary data
+        const blob = new Blob([content],{
+            type: 'plain/text'
+        });
+         //URL representing object given
+        const fileUrl =URL.createObjectURL(blob);
+        //setAttribute sets the value of an attribute on the specified element
+        element.setAttribute('href',fileUrl); //FIE LOCATION
+        element.setAttribute('download',filename);//FILE NAME
+        element.style.display='none';
+        //move an element from one element to another
+        document.body.appendChild(element);
+        element.click();
+        //removes child node from  DOM and returns the removed node
+        document.body.removeChild(element);
+
+        };
+        window.onload = () => {
+            document.getElementById('download').addEventListener('click',e =>{
+               //value of filename input
+                const filename =document.getElementById('filename').value;
+                 //value of text area input
+                const content =document.getElementById('text').value;
+        if(filename&& content){
+            downloadFile(filename,content);
+        }
+            })
+        }
+</script>
+    </body>
+</html>

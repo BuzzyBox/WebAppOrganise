@@ -1,0 +1,80 @@
+body {
+    background-image: url("background04.png");
+    text-align: center !important;
+
+}
+
+input
+{
+    width: 10%;
+    height: 40px;
+    font-size: 25px;
+    padding-left: 20px;
+    border: 2px;
+    border-radius: 50px;
+    background-color: rgb(29, 29, 29);
+    color: rgb(255, 255, 255);
+}
+
+label{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 19px;
+ 
+}
+
+h1 {
+    
+    font-family: 'Inter';
+ font-style: normal;
+ font-weight: 400;
+ font-size: 40px;
+ line-height: 19px;
+ position: absolute;
+ width:50%;
+ left:25%;
+ padding-top: 1%;
+ padding-bottom: 6%;
+ color: rgb(197, 197, 197);
+ border-radius: 15px;
+}
+   
+.para1{
+    position: absolute;
+    width:50%;
+    top: 52%;
+    left:25%;
+    color: rgb(197, 197, 197);
+    border-radius: 15px;
+    
+}
+.para2{
+    position: absolute;
+    width:49%;
+    top: 67%;
+    left:25.5%;
+    color: rgb(197, 197, 197);
+    border-radius: 15px;
+    padding-bottom: 0.5%;
+}
+
+
+.item img {
+    position:relative;
+}
+.button {
+    background-color: rgb(29, 29, 29);
+    border: none;
+    color: rgb(29, 29, 29);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    border-radius: 12px;
+  }
+
+ 

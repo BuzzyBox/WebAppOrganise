@@ -1,0 +1,216 @@
+
+*{background-color: rgb(29, 29, 29);}
+body{
+    justify-content: center;
+    display: block;
+}
+/* NAV STRT */
+nav {
+    list-style-type: none;
+    font-family:sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 240px;
+    background-color: #3a3a3a;
+    height: 100%; /*full height */
+    position:absolute; /* Make it stick, even on scroll */
+    overflow: auto; /* enable scrolling if the sidenav has too much content */
+    left: 0;
+    font-size: 16px;
+}
+li a {
+    display: block;     /* links as block elements, whole link area click */
+    color:white;
+    padding: 8px 1px; /*padding between pages*/
+    padding-top:20px;
+    text-decoration: none;
+    text-align: center;
+    background-color: #3a3a3a;
+  }
+  li h1,h3{
+      background-color: #3a3a3a;
+  }
+  
+  ul{
+      list-style-type: none;
+      background-color: #3a3a3a;
+  }
+    /* change link color on hover */
+    li a:hover {
+        background-color:#555;
+        color: #F3ECEC;
+      }
+      li:hover {
+    background-color: aqua;
+      }
+     .title { 
+        text-align: center;
+        color:white;
+       
+    }
+    .title1
+    {
+        text-align: center;
+        color:white;
+        background-color: #3C3939;
+        padding-top: 20px;
+    }
+    .divider{
+        border-top: 3px solid #bbb;
+    }
+/* NAV END */
+/* STRT PAPER */
+.Paper_container{
+position: relative;
+background: rgba(0, 255, 255, 0.694);
+width: 609px;
+height:859px;
+top: 10px;
+left:45%;
+}    
+
+.box{
+    position:absolute;
+    justify-content: center;
+    width:595px;
+    height:842px;
+    background-color: white;
+    top:2px;
+    left:4.1px;
+}
+textarea{
+    resize: none;
+}
+/* END PAPER */
+
+/* TOOLBAR */
+.toolbar {
+    position: relative;
+    width:160px;
+    height:120px;
+    color:white;
+    background-color:#3a3a3a0c;
+    left:232px;
+    overflow: hidden;
+}
+/* Links inside toolbar */
+.toolbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+    
+.toolbar .dropbtn1{
+    padding: 14px 70px;
+    color:white;
+    border: none;
+    outline: none;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+}
+/* hover */
+.toolbar a:hover, .dropdown:hover .dropbtn1{
+    background-color: aqua;
+}
+/* dropdown hidden by default */
+.dropdown-file {
+    display: none;
+    z-index: 1;
+    min-width: 160px;
+    position: absolute;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(198, 198, 198, 0.032);
+}
+/* links inside dropdown */
+.dropdown-file a{
+    float: none;
+    display:block;
+    text-align:left;
+    text-decoration: none;
+    padding: 2px 16px;
+}
+.toolbar:hover .dropdown-file{
+    display: block;
+}
+.dropbtn1{
+    background-color: #3a3a3a;
+}
+/* toolbar2 */
+.toolbar1 {
+    position: relative;
+    width:160px;
+    height:120px;
+    color:white;
+    background-color:#3a3a3a0c;
+    left:393px;
+    top:-120px;
+    overflow: hidden;
+}
+/* Links inside toolbar */
+.toolbar1 a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.toolbar1 .dropbtn2{
+    padding: 14px 70px;
+    color:white;
+    border: none;
+    outline: none;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+}
+/* hover */
+.toolbar1 a:hover, .dropdown:hover .dropbtn2{
+    background-color: aqua;
+}
+/* dropdown hidden by default */
+.dropdown-insert {
+    display: none;
+    z-index: 1;
+    min-width: 160px;
+    position: absolute;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(198, 198, 198, 0.032);
+}
+/* links inside dropdown */
+.dropdown-insert a{
+    float: none;
+    display:block;
+    text-align:left;
+    text-decoration: none;
+    padding: 2px 16px;
+}
+.toolbar1:hover .dropdown-insert{
+    display: block;
+}
+.dropbtn2{
+    background-color: #3a3a3a;
+}
+/* TOOLBAR END */
+/* TEXT & EXPORT*/
+#filename{
+    position: relative;
+    width:595px;
+    border: 2px solid #3a3a3a;
+    border-radius: 2px;
+    color:aqua ;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    left:45%;
+
+}
+
+#download{
+    cursor: pointer;
+}
+/* toolbar3 */
+/* toolbar3*/
+/* END TOOLBAR */

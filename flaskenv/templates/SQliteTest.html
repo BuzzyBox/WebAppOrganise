@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+    <!--Main link for heder.html-->
+    {% include "header.html" %}
+
+<head>
+
+  <!--Links to bootstrap scripts, 
+      ajax and cloudflare scripts,
+   fullcalendar scripts for v3 from memory-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+  
+    <!--Style sheets for web application, planner table and calendar-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+  <link rel = "stylesheet" href="/static/CalendarTestCSS.css" />
+
+ 
+    <!--Script for coding in the fullcalendar and the SQL data for the planner application. 
+        I have attempted to implement this into a .js file with no success. 
+        So it remains here in the main HTML file.-->
+    <script>
+         $(document).ready(function() {
+
+            // Accessing the fullcalendar code
+
+            var calendar = $('#calendar').fullCalendar({
+                droppable:true,  
+                selectable:true,
+                selectHelper: true,
+                editable:true,
+
+                //Resizing the events within calendar, so far it works well within the week and day format 
+                //But haven't figure out why it doesn't work within the month format though 
+
+                eventResize:function(event)
+                {
+                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                    var title = event.title;
+                    var id = event.id;
+                    $.ajax({
+                        url:"/update",
+                        type:"POST",
+                        data:{title:title, start:start, end:end, id:id},
+                        success:function(){
+                            calendar.fullCalendar('refetchEvents');
+                            alert('Event Update');
+                        }
+                    })
+                },
+
+                //Dropping your current event into the a different day, week and/or month
+
+                eventDrop:function(event)
+                {
+                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                    var title = event.title;
+                    var id = event.id;
+                    $.ajax({
+                        url:"/update",
+                        type:"POST",
+                        data:{title:title, start:start, end:end, id:id},
+                        success:function(){
+                            calendar.fullCalendar('refetchEvents');
+                            alert('Event Update');
+                        }
+                    })
+                },
+                 
+                //changing the events' colours but I couldn't figure how the permanently keep the change while the web page is refreashed or updated 
+
+                eventClick:function(event)
+                {   
+                    var back = ["#DB7093","#2E8B57","#708090","#008080","#FF6347",
+                                "#663399","#4169E1","#FA8072","#8B4513","#6B8E23",
+                                "#800000","#C71585","#7B68EE","#3CB371","#9370DB",
+                                "#4B0082","#FF69B4","#228B22","#B22222","#696969", 
+                                "#483D8B","#2E8B57","#FF4500","#2F4F4F","#DAA520"];
+                    var rand = back[Math.floor(Math.random() * back.length)];
+                   
+                    event.color = rand;
+                    calendar.fullCalendar('refetchEvents');
+                             
+                },
+
+                //hearders that display what month it currently is, 
+                //and selecting day/week/month buttons
+
+                header:{
+                    right: 'today,prev,next',
+                    center: 'title',
+                    left: 'month,agendaWeek,agendaDay'
+                },
+
+                //This is where I store the current SQL data into the calendar
+                //It says it's an error because it has the Jinja2 block code 
+                //But it is working just fine within the web application
+                
+                events:[
+                   
+                    {% for row in calendar %}
+                    { id : '{{row.id}}', title : '{{row.title}}', start : '{{row.start_event}}', end : '{{row.end_event}}',},
+                    {% endfor %}
+                    ],
+          
+                
+              
+             });
+          });
+
+    </script>
+
+  
+</head>
+<body>
+    {% block body %}
+
+    <!--Container to hold everything in place-->
+
+    <div class = "container">
+        <!--Displaying the Calendar-->
+        <div id ="calendar"></div>
+        <!--Displaying the table planner-->
+        <div class="row">
+            <!--Button for adding in new data for the calendar and table planner-->
+            <div class="col md-12">
+                <h2 class = "CalendarList">Calendar List<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add New Event</button></h2>
+                
+            {%with messages = get_flashed_messages()%}
+
+            {%if messages%}
+        
+            {% for message in messages %}
+        
+            <div class="alert alert-success alert-dismissable" role="alert">
+        
+             <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+        
+                 <span aria-hidden="true">&times;</span>
+        
+             </button>
+                {{message}}
+        
+        
+            </div>
+        
+        
+            {%endfor%}
+            {%endif%}
+            {%endwith%}
+            <!--Displaying the table, titles and data-->
+            <table class="table table-striped">
+                
+                <tr>
+                    
+                    <th>Title</th>
+                    <th>Starting Date</th>
+                    <th>Ending Date</th>
+                    
+                    </tr>
+                    
+                 {% for row in calendar %}
+                 <tr>
+                    <td>{{row.title}}</td>
+                    <td>{{row.start_event}}</td>
+                    <td>{{row.end_event}}</td>
+                    <td>
+               <!--Buttons activating the edit modal or deleting the current data-->
+               <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a> 
+               <a href="{{url_for('ajax_delete', id=row.id)}}" class="btn btn-danger btn-xs" onclick="confirm('Are You Sure You Want To Delete This Event?')">Delete</a>
+               
+  
+
+            </td>
+            </tr>
+            <!--Modal pop-up for editing current data-->
+            <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Update Current Events</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                           <form action="{{ url_for('update')}}" method="POST"> 
+                            
+                               <div class="form-group">
+
+                                <input type = "hidden" name = "id" value="{{row.id}}">
+                                
+                                <label>Title:</label>
+                                <input type="text" class="form-control" name="title" value="{{row.title}}">
+             
+             
+    
+                               <div class="form-group">
+                                <label>Starting Date:</label>
+                                <input type="datetime-local" class="form-control" name="start" value="{{row.start_event}}">
+                             </div>
+              
+              
+                             <div class="form-group">
+                                <label>Ending Date:</label>
+                                <input type="datetime-local" class="form-control" name="end" value="{{row.end_event}}">
+                             </div>
+                            
+                            <!--Submit button for Update current data/events-->
+                             <div class="form-group">
+                                <button class="btn btn-primary" type="submit">Update Event</button>
+                             </div>
+                           </form>
+                        </div>
+    
+                            
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+    
+                        </div>
+                    </div>    
+                </div>
+            </div>
+                {% endfor %}
+            
+                </tbody>
+    
+            </table>
+            </div>
+
+               <!--Modal pop-up for adding in new data-->
+
+            <div id="myModal" class="modal fade" role="dialog">
+
+
+                <div class="modal-dialog">
+             
+             
+                   <div class="modal-content">
+             
+             
+                      <div class="modal-header">
+             
+             
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+             
+             
+                         <h4 class="modal-title">Create New Events</h4>
+             
+             
+                      </div>
+             
+             
+                      <div class="modal-body">
+             
+             
+                         <form action="{{ url_for('insert')}}" method="POST">
+             
+             
+                            <div class="form-group">
+             
+             
+                               <label>Title:</label>
+                               <input type="text" class="form-control" name="title" required="1">
+             
+             
+                            </div>
+             
+             
+                             <div class="form-group">
+             
+             
+                               <label>Starting Date:</label>
+                               <input type="datetime-local" class="form-control" name="start" required="1">
+             
+             
+                            </div>
+             
+             
+                             <div class="form-group">
+             
+             
+                               <label>Ending Date:</label>
+                               <input type="datetime-local" class="form-control" name="end" required="1">
+             
+             
+                            </div>
+
+                            <!--sumbit button for creating new data/event -->
+
+                            <div class="form-group">
+             
+             
+                               <button class="btn btn-primary" type="submit">Create Event</button>
+             
+             
+                            </div>
+             
+             
+                         </form>
+             
+             
+                      </div>
+             
+             
+                      <div class="modal-footer">
+             
+             
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             
+             
+                      </div>
+             
+             
+                   </div>
+             
+             
+                </div>
+             
+             
+             </div>
+        
+        
+            </div>
+
+
+
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+
+<head>
+	<meta charset="'UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"  >
+	<meta name="viewport" content="'width=device-width, initial-scale=1.0" >
+	<link rel="icon" type="image/x-icon" href="/static/tabICN.ico">
+	<link rel="stylesheet" href="{{ url_for('static', filename='loginStyle.css') }}">
+	<title>Organize - Smarter, Faster, Better</title>
+</head>
+
+<body>
+ 	<br><a href="{{url_for('mainP')}}"><br><br><br><br>
+		   <img src="{{url_for('static', filename='logo1.png')}}"  width= "15%"/>
+	   </a><br><br><br><br><br><br>
+       <section class="login-section">
+           <h1>Welcome to Organize login page</h1>
+	      <form class="login-form" action="http://127.0.0.1:5000/login" method="POST">
+		  <p>Username: <input type="text" name="U_username" /> </p>
+		  <p>Password: <input type="text" name="U_passWord" /> </p>
+		  <p><input type="submit" name="enter" /> </p>
+
+	      </form>
+
+        </section>
+
+</body>
+
+
